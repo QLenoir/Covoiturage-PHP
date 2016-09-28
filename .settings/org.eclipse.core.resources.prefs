@@ -1,0 +1,18 @@
+#Mon Dec 05 14:00:55 CET 2011
+eclipse.preferences.version=1
+encoding//classes/PersonneManager.class.php=UTF-8
+encoding//include/footer.inc.php=UTF-8
+encoding//include/header.inc.php=UTF-8
+encoding//include/pages/ChercherTrajet.inc.php=UTF-8
+encoding//include/pages/Connexion.inc.php=UTF-8
+encoding//include/pages/Deconnexion.inc.php=UTF-8
+encoding//include/pages/ModifierPersonne.inc.php=UTF-8
+encoding//include/pages/ProposerTrajet.inc.php=UTF-8
+encoding//include/pages/SupprimerPersonne.inc.php=UTF-8
+encoding//include/pages/ajouterParcours.inc.php=UTF-8
+encoding//include/pages/ajouterPersonne.inc.php=UTF-8
+encoding//include/pages/ajouterVille.inc.php=UTF-8
+encoding//include/pages/listerParcours.inc.php=UTF-8
+encoding//include/pages/listerPersonnes.inc.php=UTF-8
+encoding//include/pages/listerVilles.inc.php=UTF-8
+encoding//js/calendrier.js=UTF-8
