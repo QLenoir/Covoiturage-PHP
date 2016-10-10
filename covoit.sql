@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.15, for Linux (x86_64)
+-- MySQL dump 10.16  Distrib 10.1.16-MariaDB, for Linux (x86_64)
 --
--- Host: localhost    Database: covoiturage
+-- Host: localhost    Database: TP3_PHP
 -- ------------------------------------------------------
--- Server version	5.7.15-0ubuntu0.16.04.1
+-- Server version	10.1.16-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -71,7 +71,7 @@ CREATE TABLE `departement` (
 
 LOCK TABLES `departement` WRITE;
 /*!40000 ALTER TABLE `departement` DISABLE KEYS */;
-INSERT INTO `departement` VALUES (1,'Informatique',7),(2,'GEA',6),(3,'GEA',7),(4,'SRC',7),(5,'HSE',5),(6,'GÃ©nie civil',16);
+INSERT INTO `departement` VALUES (1,'Informatique',7),(2,'GEA',6),(3,'GEA',7),(4,'SRC',7),(5,'HSE',5),(6,'Génie civil',16);
 /*!40000 ALTER TABLE `departement` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,7 +95,7 @@ CREATE TABLE `division` (
 
 LOCK TABLES `division` WRITE;
 /*!40000 ALTER TABLE `division` DISABLE KEYS */;
-INSERT INTO `division` VALUES (1,'AnnÃ©e 1'),(2,'AnnÃ©e 2'),(3,'AnnÃ©e SpÃ©ciale'),(4,'Licence Professionnelle');
+INSERT INTO `division` VALUES (1,'Année 1'),(2,'Année 2'),(3,'Année Spéciale'),(4,'Licence Professionnelle');
 /*!40000 ALTER TABLE `division` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,7 +149,7 @@ CREATE TABLE `fonction` (
 
 LOCK TABLES `fonction` WRITE;
 /*!40000 ALTER TABLE `fonction` DISABLE KEYS */;
-INSERT INTO `fonction` VALUES (1,'Directeur'),(2,'Chef de dÃ©partement'),(3,'Technicien'),(4,'SecrÃ©taire'),(5,'IngÃ©nieur'),(6,'Imprimeur'),(7,'Enseignant'),(8,'Chercheur');
+INSERT INTO `fonction` VALUES (1,'Directeur'),(2,'Chef de département'),(3,'Technicien'),(4,'Secrétaire'),(5,'Ingénieur'),(6,'Imprimeur'),(7,'Enseignant'),(8,'Chercheur');
 /*!40000 ALTER TABLE `fonction` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -291,7 +291,7 @@ CREATE TABLE `ville` (
 
 LOCK TABLES `ville` WRITE;
 /*!40000 ALTER TABLE `ville` DISABLE KEYS */;
-INSERT INTO `ville` VALUES (5,'Tulle'),(6,'Brive'),(7,'Limoges'),(8,'GuÃ©ret'),(9,'PÃ©rigueux'),(10,'Bordeaux'),(11,'Paris'),(12,'Toulouse'),(13,'Lyon'),(14,'Poitiers'),(15,'Ambazac'),(16,'Egletons');
+INSERT INTO `ville` VALUES (5,'Tulle'),(6,'Brive'),(7,'Limoges'),(8,'Guéret'),(9,'Périgueux'),(10,'Bordeaux'),(11,'Paris'),(12,'Toulouse'),(13,'Lyon'),(14,'Poitiers'),(15,'Ambazac'),(16,'Egletons');
 /*!40000 ALTER TABLE `ville` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -304,4 +304,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-04 14:19:38
+-- Dump completed on 2016-10-05  9:49:01
