@@ -135,49 +135,8 @@ body{
 .centreImage {
     display: block;
     margin-left: auto;
-    margin-right: auto }
-    
-.centrerBlock{
-	margin:auto;
-	width:200px;	
-}
-.labelC{
-	display: inline; 
-	padding-top:4px; 
-	margin-left:20px; 
-}
-
-.bouton{ 
-	border:2px #AAAAAA solid;
-	background-color:#444444; 
-	font-size:12pt;
-    font-weight:bold;
-    font-decoration:none; 
-    font-family:Verdana, Arial, sans-serif; 
-    color:#FFFFFF; 
-    width:125px;
-    height:40px;
-    border-radius:10px;
-    cursor:pointer;
-}
-.bouton:hover{ 
-	box-shadow:0 0 2px #000000;	
-	background-color:#555555; 
-}
-
-.champ{
-	background-color:#E0E0E0;
-	margin:0px 5px 5px 5px;
-	padding:5px;
-	font-size:12pt;
-   min-height:25px;
-   border-radius:10px;	
-   border:1px #222222 solid;
-	box-shadow:1px 1px 3px #000000 inset;
-}
-
-.champ:focus{
-	box-shadow:1px 1px 5px #000000 inset;
+    margin-right: auto;
+    width: 38%
 }
 
 label{
@@ -189,14 +148,7 @@ h1{
 	text-shadow:1px 1px 2px #333333;	
 }
 
-.nb {
-	border:1px solid #333333;
-	}
 
-.espaceNB{
-	font-size:30px;position:relative;top:-8px;
-	}
-	
 * a:hover{
 
 	text-decoration: underline;

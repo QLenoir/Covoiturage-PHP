@@ -1,2 +1,2 @@
-<img class="centreImage" src="image/logo.gif" alt="Covoiturage IUT" title="Covoiturage IUT Limousin" width="38%"/>
+<img class="centreImage" src="image/logo.gif" alt="Covoiturage IUT" title="Covoiturage IUT Limousin" />
 	
