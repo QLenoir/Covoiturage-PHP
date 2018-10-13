@@ -25,4 +25,18 @@ class VilleManager{
 		$req->bindValue(':vil_nom',$ville->getVilNom(),PDO::PARAM_STR);
 		$req->execute();
 	}
+
+	public function exists($ville) {
+
+		$req = $this->db->prepare('SELECT vil_nom FROM ville');
+		$req->execute();
+		
+		while ($res = $req->fetch(PDO::FETCH_OBJ)) {	
+			$villetable = new Ville($res);
+			if($ville === $villetable->getVilNom()){
+				return true;
+			}
+		}
+		return false;
+	}
 }

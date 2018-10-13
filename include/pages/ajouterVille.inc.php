@@ -13,10 +13,12 @@
 		$ville = new Ville (
 			array('vil_nom' => $_POST['vil_nom'])
 		);
+		if($manager->exists($ville->getVilNom())===true){
+			?><img src="image/erreur.png" alt="Erreur" title="Erreur" /><p>Ajout impossible : ville déja présente</p> <?php
+		} else {
+			$manager->addVille($ville); ?>
+			<img src="image/valid.png" alt="Validé" title="Validé" /> 
+			<p> La ville "<bold><?php echo $_POST['vil_nom']?></bold>" a été ajoutée</p>
 		
-		$manager->addVille($ville);
-	?>
-	<img src="image/valid.png" alt="Validé" title="Validé" /> 
-	<p > La ville "<bold><?php echo $_POST['vil_nom']?></bold>" a été ajoutée</p>
-
-	<?php } ?>
+	<?php }
+	} ?>
