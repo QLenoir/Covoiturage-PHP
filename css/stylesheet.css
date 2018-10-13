@@ -155,9 +155,20 @@ h1{
 	text-decoration: underline;
 }
 
-.listeville table{
-	border: 1px solid black;
+table{
+	margin-left: 30%;
+	margin-bottom: 1%;
+	border-collapse: collapse;;
 }
+
+
+
+td {
+	border: 1px solid black;
+	padding: 10px 100px 10px 100px;
+	margin: 0%;
+}
+
 #menu a:hover{
 	text-decoration: underline;
 	font-weight: bold;

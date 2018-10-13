@@ -39,4 +39,10 @@ class VilleManager{
 		}
 		return false;
 	}
+
+	public function getNbVille(){
+		$req = $this->db->prepare('SELECT * FROM VILLE');
+		$req->execute();
+		return $req->rowCount();
+	}
 }
