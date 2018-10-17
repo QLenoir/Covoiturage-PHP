@@ -1,5 +1,5 @@
 <?php
-class Ville{
+class Connexion{
 	private $per_login;
 	private $per_pwd;
 

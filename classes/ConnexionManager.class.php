@@ -1,5 +1,5 @@
 <?php
-class VilleManager{
+class ConnexionManager{
 	private $db;
 
 	public function __construct($db) {
@@ -7,8 +7,7 @@ class VilleManager{
 	}
 
 	public function login($connexion){
-		$connexion->setPerPwd(sha1(sha1($connexion->getPerPwd)).SALT);
-
+		//$connexion->setPerPwd(sha1(sha1($connexion->getPerPwd()).SALT));
 		$req = $this->db->prepare('SELECT per_login,per_pwd FROM personne');
 		$req->execute();
 			while ($res = $req->fetch(PDO::FETCH_OBJ)) {	
