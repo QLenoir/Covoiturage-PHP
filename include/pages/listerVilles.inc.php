@@ -1,7 +1,5 @@
 <h1> Liste des villes </h1>
 <?php
-	require '/include/autoLoad.inc.php';
-	require '/include/config.inc.php'; 
 	$db = new Mypdo();
 	$manager = new VilleManager($db);
 	$villes = $manager->getAllVille();?>
