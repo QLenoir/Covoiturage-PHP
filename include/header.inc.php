@@ -28,7 +28,7 @@
 			</div>
 			<div id="connect">
 				<?php  if(isset($_SESSION['login'])) {?>
-					Utilisateur : <strong><?php echo $_SESSION['login']?></strong>     <a href="index.php?page=12">    Déconnexion</a>
+					Utilisateur : <strong id="login"><?php echo $_SESSION['login']?></strong> <a href="index.php?page=12">Déconnexion</a>
 				<?php } else {?>
 					<a href="index.php?page=11">Connexion</a> 
 				<?php } ?>
