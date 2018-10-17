@@ -16,6 +16,7 @@ class Ville{
 				case 'vil_num' : $this->setVilNum($valeur);
 					break;
 				case 'vil_nom' : $this->setVilNom($valeur);
+					break;
 			}
 		}
 	}

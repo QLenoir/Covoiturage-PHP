@@ -1,10 +1,8 @@
-<?php require '/include/autoLoad.inc.php';
-  require '/include/config.inc.php'?>
 <h1>Ajouter une ville</h1>
 
 	<?php if(empty($_POST['vil_nom'])) { ?>
 	<form action="index.php?page=7" id="NO_COMMANDE" method="post">
-		<label>Nom : <label><input type="text" name="vil_nom" size="4">
+		<label>Nom : </label><input type="text" name="vil_nom" size="4">
 		<input type=submit value="Valider">
 	</form>
 	<?php } else { 

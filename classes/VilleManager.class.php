@@ -11,10 +11,10 @@ class VilleManager{
 		$req->execute();
 
 		while ($ville = $req->fetch(PDO::FETCH_OBJ)) {
-			$listeClients[] = new Ville ($ville);
+			$listeVilles[] = new Ville ($ville);
 		}
 
-		return $listeClients;
+		return $listeVilles;
 
 		$req->closeCursor();
 	}
@@ -32,8 +32,8 @@ class VilleManager{
 		$req->execute();
 		
 		while ($res = $req->fetch(PDO::FETCH_OBJ)) {	
-			$villetable = new Ville($res);
-			if($ville === $villetable->getVilNom()){
+			$villeTable = new Ville($res);
+			if($ville === $villeTable->getVilNom()){
 				return true;
 			}
 		}
