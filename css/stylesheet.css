@@ -183,3 +183,24 @@ td {
 #connect a :visited{
 }
 
+#champ{
+	width:15%;
+	background-color: lightgray;
+	border-radius:5px;
+	border:1px solid #111111;
+	box-shadow:1px 0 5px #000000 inset;
+	color:;
+	font-size:18px;
+	text-align:center;
+}
+
+#valider{	
+	width:15%;
+	background-color: black;
+	border-radius:5px;
+	border:5px solid #lightgray;
+	color: white;
+	font-size:18px;
+	padding: 5px 0px 5px 0px;
+	text-align:center;
+}

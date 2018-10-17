@@ -6,22 +6,23 @@
 	if(empty($_POST['par_km'])) { ?>
 	<form action="index.php?page=5" id="NO_COMMANDE" method="post">
 		<p>
-			<label>Ville 1 : </label><select size="1" name="vil_num1">
+			<label>Ville 1 : </label><select id="champ" size="1" name="vil_num1">
 				<?php $listeParcours = $villeManager->getAllVille(); 
 				foreach ($listeParcours as $attribut => $value) {
 				?>
 					<option value= <?php echo $value->getVilNum() ?> > <?php echo $value->getVilNom() ?> </option>
 				<?php } ?>
 			</select>
-			<label>Ville 2 : </label><select size="1" name="vil_num2">
+			<label>Ville 2 : </label><select id="champ" size="1" name="vil_num2">
 				<?php $listeParcours = $villeManager->getAllVille(); 
 				foreach ($listeParcours as $attribut => $value) {
 				?>
 					<option value= <?php echo $value->getVilNum() ?> > <?php echo $value->getVilNom() ?> </option>
 				<?php } ?>
 		</select>
-		<label>Nombre de kilomètres : </label><input type="number" name="par_km" size="4" min="0" max="1000">	
-		<input type=submit value="Valider"></p>
+		<label>Nombre de kilomètres : </label><input type="number" id="champ" name="par_km" size="4" min="0" max="1000">	
+		</p>
+		<input type=submit id="valider" value="Valider">
 	</form>
 	<?php } else { 
 		$manager = new ParcoursManager($db);
