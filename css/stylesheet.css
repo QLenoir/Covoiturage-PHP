@@ -205,6 +205,20 @@ td {
 	text-align:center;
 }
 
+#connexion{
+	width:15%;
+	background-color: black;
+	border-radius:5px;
+	border:5px solid #lightgray;
+	color: white;
+	font-size:18px;
+	padding: 5px 0px 5px 0px;
+	text-align:center;
+	display: inherit;
+	margin:auto;
+	margin-top: 20px;
+}
+
 #login{
 	padding-right:25px;
 }
