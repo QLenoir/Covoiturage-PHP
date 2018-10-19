@@ -45,4 +45,12 @@ class VilleManager{
 		$req->execute();
 		return $req->rowCount();
 	}
+
+	public function recupNomVille($numVille) {
+		$req = $this->db->prepare('SELECT vil_nom FROM ville WHERE vil_num="'.$numVille.'";');
+		$req->execute();
+		$res = $req->fetch(PDO::FETCH_OBJ);
+		$ville = new Ville($res);
+		return $ville->getVilNom();
+	}
 }

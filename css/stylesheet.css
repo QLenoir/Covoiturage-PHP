@@ -222,3 +222,10 @@ td {
 #login{
 	padding-right:25px;
 }
+
+
+#listeparcours{
+	margin: auto;
+	margin-bottom: 5%;
+	border-collapse: collapse;
+}
