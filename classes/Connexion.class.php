@@ -2,6 +2,8 @@
 class Connexion{
 	private $per_login;
 	private $per_pwd;
+	private $captcha;
+	private $reponse;
 
 	public function __construct($valeurs) {
 		if (!empty($valeurs)) {
@@ -17,6 +19,10 @@ class Connexion{
 					break;
 				case 'per_pwd' : $this->setPerPwd($valeur);
 					break;
+				case 'captcha' : $this->setCaptcha($valeur);
+					break;
+				case 'reponse' : $this->setReponse($valeur);
+					break;
 			}
 		}
 	}
@@ -29,11 +35,27 @@ class Connexion{
 		$this->per_pwd = $pwd;
 	}
 
+	public function setCaptcha($captcha) {
+			$this->captcha = $captcha;
+	}
+
+	public function setReponse($reponse) {
+		$this->reponse = $reponse;
+	}
+
 	public function getPerLogin() {
 		return $this->per_login;
 	}
 
 	public function getPerPwd() {
 		return $this->per_pwd;
+	}
+
+	public function getCaptcha() {
+		return $this->captcha;
+	}
+
+	public function getReponse() {
+		return $this->reponse;
 	}
 }

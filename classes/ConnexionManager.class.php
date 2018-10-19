@@ -8,14 +8,17 @@ class ConnexionManager{
 
 	public function login($connexion){
 		$connexion->setPerPwd(sha1(sha1($connexion->getPerPwd()).SALT));
-		$req = $this->db->prepare('SELECT per_login,per_pwd FROM personne');
+		$req = $this->db->prepare('SELECT per_login,per_pwd FROM personne WHERE per_login="'.$connexion->getPerLogin().'";');
 		$req->execute();
-			while ($res = $req->fetch(PDO::FETCH_OBJ)) {	
-				$connexionTable = new Connexion($res);
-				if($connexion->getPerLogin() === $connexionTable->getPerLogin() && $connexion->getPerPwd() === $connexionTable->getPerPwd()){
-					return true;
-				}
+		$res = $req->fetch(PDO::FETCH_OBJ);	
+		$connexionTable = new Connexion($res);	
+		if($connexion->getPerLogin() === $connexionTable->getPerLogin() && $connexion->getPerPwd() === $connexionTable->getPerPwd()) {
+			if($connexion->getCaptcha() == $connexion->getReponse()){
+				return 1;
+			} else {
+				return (-1);					
 			}
-		return false;
+		}
+		return 0;
 	}
 }

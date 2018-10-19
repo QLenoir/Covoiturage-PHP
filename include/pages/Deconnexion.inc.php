@@ -1,3 +1,4 @@
 <?php 
 	session_destroy();
-	header('Location: index.php?page=11'); ?>
+	header('Location: index.php?page=11'); 
+?>

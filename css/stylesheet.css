@@ -228,3 +228,19 @@ td {
 	margin-bottom: 5%;
 	border-collapse: collapse;
 } 
+
+#operation {
+	font-size: 30px;
+	flex-direction: row;
+}
+
+#nb {
+	border:1px solid #021a40;
+}
+
+#captcha{
+	display:flex;
+	margin: auto;
+	margin-left: 46%;
+	margin-top: 15px;
+	margin-bottom:15px;
