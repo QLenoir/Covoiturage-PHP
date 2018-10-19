@@ -30,4 +30,4 @@
 			</tr><?php echo "\n";
 		} ?>
 	</table>
-	</div><?php
+	</div>
