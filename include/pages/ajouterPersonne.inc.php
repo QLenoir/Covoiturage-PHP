@@ -1,17 +1,17 @@
 
 	<h1>Ajouter une personne</h1>
 
-	<?php if(empty($_POST['p_nom'])) { ?>
+	<?php if(empty($_POST['per_login'])) { ?>
 		<form action="index.php?page=1" id="personne" method="post">
 	<p class=pg>
-		Nom : <input type="text" name="p_nom" size="10"><br>
-		Téléphone : <input type="text" name="p_tel" size="10"><br>
-		Login : <input type="text" name="p_login" size="10">
+		Nom : <input type="text" id="champ" name="per_nom" size="10"><br>
+		Téléphone : <input type="text" id="champ" name="per_tel" size="10"><br>
+		Login : <input type="text" id="champ" name="per_login" size="10">
 	</p>
 	<p class=pdr>
-		Prénom : <input type="text" name="p_prenom" size="10"><br>
-		Mail : <input type="text" name="p_mail" size="10"><br>
-		Mot de passe : <input type="text" name="p_mdp" size="10">
+		Prénom : <input type="text" id="champ" name="per_prenom" size="10"><br>
+		Mail : <input type="mail" id="champ" name="per_mail" size="10"><br>
+		Mot de passe : <input type="password" id="champ" name="per_pwd" size="10">
 	</p>
 	<br>
 	Catégorie : <input type="radio" name="p_categ" value=etu checked>Etudiant
@@ -23,15 +23,13 @@
 		<?php } else { 
 		$db = new Mypdo();
 		$manager = new PersonneManager($db);
-		$personne = new Personne (
-			array('p_nom' => $_POST['p_nom'])
-		);
-		if($manager->exists($personne->getPersLogin())===true){
-			?><img src="image/erreur.png" alt="Erreur" title="Erreur" /><p>Ajout impossible : Login déja utilisé</p> <?php
+		$personne = new Personne ($_POST);
+		if($manager->exists($personne)===true){
+			?><p><img src="image/erreur.png" alt="Erreur" title="Erreur" />Ajout impossible : Login/Email déja utilisé</p> <?php
 		} else {
 			$manager->addPersonne($personne); ?>
-			<img src="image/valid.png" alt="Validé" title="Validé" /> 
-			<p> La ville "<bold><?php echo $_POST['p_nom']?></bold>" a été ajoutée</p>
+			<p><img src="image/valid.png" alt="Validé" title="Validé" /> 
+		    <?php echo $_POST['per_prenom']?> <?php echo $_POST['per_nom']?> a été ajouté(e)</p>
 		
 	<?php }
 	} ?>

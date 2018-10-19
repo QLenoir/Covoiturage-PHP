@@ -18,19 +18,20 @@ class Personne{
 		foreach ($donnees as $attribut =>$valeur){
 
 			switch ($attribut){
-				case 'p_num' : $this->setPNum($valeur);
+				case 'per_num' : $this->setPNum($valeur);
 					break;
-				case 'p_nom' : $this->setPNom($valeur);
+				case 'per_nom' : $this->setPNom($valeur);
 					break;
-				case 'p_prenom' : $this->setPPrenom($valeur);
+				case 'per_prenom' : $this->setPPrenom($valeur);
 					break;
-				case 'p_tel' : $this->setPTel($valeur);
+				case 'per_tel' : $this->setPTel($valeur);
 					break;
-				case 'p_login' : $this->setPLogin($valeur);
+				case 'per_login' : $this->setPLogin($valeur);
 					break;
-				case 'p_mdp' : $this->setPMdp($valeur);
+				case 'per_pwd' : $this->setPMdp($valeur);
 					break;
-				case 'p_mail' : $this->setPMail($valeur);
+				case 'per_mail' : $this->setPMail($valeur);
+					break;
 			}
 		}
 	}
@@ -50,7 +51,8 @@ class Personne{
 		$this->p_login = $login;
 	}
 	public function setPMdp($mdp){
-		$this->p_mdp = $mdp;
+		$this->p_mdp = sha1(sha1($mdp).SALT);
+		echo $this->p_mdp;
 	}
 	public function setPMail($mail){
 		$this->p_mail = $mail;

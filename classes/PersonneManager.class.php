@@ -11,7 +11,7 @@ class PersonneManager{
 		$req->execute();
 
 		while ($personne = $req->fetch(PDO::FETCH_OBJ)) {
-			$listePersonnes[] = new personne ($personne);
+			$listePersonnes[] = new Personne ($personne);
 		}
 
 		return $listePersonnes;
@@ -23,22 +23,22 @@ class PersonneManager{
 		
 		$req = $this->db->prepare('INSERT INTO personne(per_nom,per_prenom,per_tel,per_mail, per_login, per_pwd) VALUES (:p_nom, :p_prenom, :p_tel, :p_mail, :p_login, :p_mdp)');
 		$req->bindValue(':p_nom', $personne->getPNom(),PDO::PARAM_STR);
-		$rep -> bindValue(':p_prenom', $personne->getPPrenom(),PDO::PARAM_STR);
-		$rep -> bindValue(':p_tel', $personne->getPTel(),PDO::PARAM_STR);
-		$rep -> bindValue(':p_mail', $personne->getPMail(),PDO::PARAM_STR);
-		$rep -> bindValue(':p_login', $personne->getPLogin(),PDO::PARAM_STR);
-		$rep -> bindValue(':p_mdp', $personne->getPMdp(),PDO::PARAM_STR);
+		$req-> bindValue(':p_prenom', $personne->getPPrenom(),PDO::PARAM_STR);
+		$req-> bindValue(':p_tel', $personne->getPTel(),PDO::PARAM_STR);
+		$req-> bindValue(':p_mail', $personne->getPMail(),PDO::PARAM_STR);
+		$req-> bindValue(':p_login', $personne->getPLogin(),PDO::PARAM_STR);
+		$req-> bindValue(':p_mdp', $personne->getPMdp(),PDO::PARAM_STR);
 		$req->execute();
 	}
 
 	public function exists($personne) {
 
-		$req = $this->db->prepare('SELECT per_nom,per_prenom,per_tel,per_mail, per_login, per_pwd FROM personne');
+		$req = $this->db->prepare('SELECT per_mail, per_login FROM personne');
 		$req->execute();
 		
 		while ($res = $req->fetch(PDO::FETCH_OBJ)) {	
-			$personnetable = new personne($res);
-			if($personne === $personnetable->getPMail()){
+			$personnetable = new Personne($res);
+			if($personne->getPMail() === $personnetable->getPMail() || $personne->getPLogin() === $personnetable->getPLogin()){
 				return true;
 			}
 		}
