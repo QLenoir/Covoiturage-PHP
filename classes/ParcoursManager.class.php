@@ -70,4 +70,38 @@ class ParcoursManager{
 		$ville = new Ville($res);
 		return $ville->getVilNom();
 	}
+
+	public function getVilleParcours($vil_num1) {
+		$req = $this->db->prepare('SELECT vil_num2 AS vil_num FROM parcours WHERE vil_num1="'.$vil_num1.'" UNION SELECT vil_num1 AS vil_num FROM parcours WHERE vil_num2="'.$vil_num1.'";');
+		$req->execute();
+
+		while ($villes = $req->fetch(PDO::FETCH_OBJ)) {
+			$listeVilleParcours[] = new Ville($villes);
+		}
+
+		foreach ($listeVilleParcours as $attribut => $value) {
+			$value->setVilNom($this->recupNomVille($value->getVilNum()));
+		}
+		return $listeVilleParcours;
+	}
+
+	public function findParNum($vil_num1,$vil_num2) {
+		$req = $this->db->prepare('SELECT par_num FROM parcours WHERE (vil_num1='.$vil_num1.' AND vil_num2='.$vil_num2.') OR (vil_num1='.$vil_num2.' AND vil_num2='.$vil_num1.');');
+		$req->execute();
+		$res = $req->fetch(PDO::FETCH_OBJ);
+		$parcours = new Parcours($res);
+		return $parcours->getParNum();
+	}
+
+	public function findProSens($par_num,$vil_num1){
+		$req = $this->db->prepare('SELECT vil_num1,vil_num2 FROM parcours WHERE par_num='.$par_num.';');
+		$req->execute();
+		$res = $req->fetch(PDO::FETCH_OBJ);
+		$par = new Parcours($res);
+		if($par->getVilNum1()===$vil_num1){
+			return 0;
+		} else {
+			return 1;
+		}
+	}
 }
