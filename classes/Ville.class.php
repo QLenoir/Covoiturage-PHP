@@ -11,7 +11,6 @@ class Ville{
 
 	public function affecte($donnees) {
 		foreach ($donnees as $attribut => $valeur) {
-			
 			switch($attribut) {
 				case 'vil_num' : $this->setVilNum($valeur);
 					break;

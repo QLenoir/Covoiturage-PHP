@@ -48,4 +48,26 @@ class ParcoursManager{
 		return $req->rowCount();
 	}
 
+	public function getAllVilleParcours() {
+		$req = $this->db->prepare('SELECT vil_num1 AS vil_num FROM parcours UNION SELECT vil_num2 AS vil_num FROM parcours');
+		$req->execute();
+
+		while ($villes = $req->fetch(PDO::FETCH_OBJ)) {
+			$listeVilleParcours[] = new Ville($villes);
+		}
+
+		foreach ($listeVilleParcours as $attribut => $value) {
+			$value->setVilNom($this->recupNomVille($value->getVilNum()));
+		}
+
+		return $listeVilleParcours;
+	}
+
+	public function recupNomVille($numVille) {
+		$req = $this->db->prepare('SELECT vil_nom FROM ville WHERE vil_num="'.$numVille.'";');
+		$req->execute();
+		$res = $req->fetch(PDO::FETCH_OBJ);
+		$ville = new Ville($res);
+		return $ville->getVilNom();
+	}
 }

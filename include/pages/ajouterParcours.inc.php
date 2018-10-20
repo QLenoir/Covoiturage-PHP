@@ -20,7 +20,7 @@
 					<option value= <?php echo $value->getVilNum() ?> > <?php echo $value->getVilNom() ?> </option>
 				<?php } ?>
 		</select>
-		<label>Nombre de kilomètres : </label><input type="number" id="champ" name="par_km" size="4" min="0" max="1000">	
+		<label>Nombre de kilomètres : </label><input type="number" id="champ" name="par_km" size="4" min="1" max="1000">	
 		</p>
 		<input type=submit id="valider" value="Valider">
 	</form>

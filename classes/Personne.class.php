@@ -52,7 +52,6 @@ class Personne{
 	}
 	public function setPMdp($mdp){
 		$this->p_mdp = sha1(sha1($mdp).SALT);
-		echo $this->p_mdp;
 	}
 	public function setPMail($mail){
 		$this->p_mail = $mail;
