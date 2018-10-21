@@ -34,7 +34,6 @@ class ProposeManager{
 			$listeVilles[] = new Ville ($ville);
 
 		}
-		var_dump($listeVilles);
 		return $listeVilles;
 
 		$req->closeCursor();
@@ -46,5 +45,59 @@ class ProposeManager{
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		$ville = new Ville($res);
 		return $ville->getVilNom();
+	}
+
+	public function getVilleArrivee($vil_num1) {
+		$req = $this->db->prepare('SELECT vil_num2 AS vil_num FROM parcours WHERE vil_num1="'.$vil_num1.'" UNION SELECT vil_num1 AS vil_num FROM parcours WHERE vil_num2="'.$vil_num1.'";');
+		$req->execute();
+
+		while ($ville = $req->fetch(PDO::FETCH_OBJ)) {
+			$listeVilles[] = new Ville ($ville);
+
+		}
+		return $listeVilles;
+
+		$req->closeCursor();
+	}
+
+	public function findTrajet($vil_num1,$vil_num2,$pro_date,$heure,$precision) {
+		$par_num = $this->recupParNum($vil_num1,$vil_num2);
+		$req = $this->db->prepare('SELECT vil_num1,vil_num2,pro_date,pro_time,pro_place,per_num FROM propose po JOIN parcours pa ON pa.par_num=po.par_num WHERE po.par_num='.$par_num.' AND pa.vil_num1="'.$vil_num1.'" AND pro_date="'.$pro_date.'" AND HOUR(pro_time)>='.$heure.';');
+		$req->execute();
+		while ($res = $req->fetch(PDO::FETCH_OBJ)) {
+			$listeTrajet[] = Array('vil_num1' => $res->vil_num1,
+								   'vil_num2' => $res->vil_num2,
+								   'pro_date' => $res->pro_date,
+								   'pro_time' => $res->pro_time,
+								   'pro_place' => $res->pro_place,
+								   'per_num' => $res->per_num);
+		}
+
+		if(empty($listeTrajet)){
+			return 0;
+		} else {
+			return $listeTrajet;
+		}
+	}
+
+	public function prenomNomLogin($login){
+		$req = $this->db->prepare('SELECT per_prenom,per_nom FROM personne WHERE per_login="'.$login.'";');
+		$req->execute();
+		$res = $req->fetch(PDO::FETCH_OBJ);
+		return $res->per_prenom." ".$res->per_nom;
+	}
+
+	public function getPrenomNomFromNum($per_num){
+		$req = $this->db->prepare('SELECT per_prenom,per_nom FROM personne WHERE per_num="'.$per_num.'";');
+		$req->execute();
+		$res = $req->fetch(PDO::FETCH_OBJ);
+		return $res->per_prenom." ".$res->per_nom;
+	}
+
+	public function recupParNum($vil_num1,$vil_num2){
+		$req = $this->db->prepare('SELECT par_num FROM parcours WHERE vil_num1="'.$vil_num1.'" AND vil_num2="'.$vil_num2.'" UNION SELECT par_num FROM parcours WHERE vil_num1="'.$vil_num2.'" AND vil_num2="'.$vil_num1.'";');
+		$req->execute();
+		$res = $req->fetch(PDO::FETCH_OBJ);
+		return $res->par_num;
 	}
 }

@@ -246,3 +246,21 @@ td {
 	margin-bottom:15px;
 
 }
+
+table#recherche{
+	margin:auto;
+}
+
+#recherche td{
+    padding-left: 25px;
+    padding-top: 15px;
+    padding-right: 25px;
+    padding-bottom: 15px;
+}
+
+#recherche th{
+    padding-left: 25px;
+    padding-top: 15px;
+    padding-right: 25px;
+    padding-bottom: 15px;
+}

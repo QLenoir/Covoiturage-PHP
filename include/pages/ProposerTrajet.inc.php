@@ -45,4 +45,4 @@
 		?> 
 		<p><img src="image/valid.png" alt="Validé" title="Validé" /> Le trajet à été ajouté </p>
 		
-	<?php } ?>	
+	<?php unset($_SESSION['var_num1']); } ?>	
