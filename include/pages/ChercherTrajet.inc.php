@@ -71,7 +71,7 @@
 				<?php echo $manager->recupNomVille($recherche[$attribut]['vil_num2']) ?>
 			</td>
 			<td>
-				<?php echo $recherche[$attribut]['pro_date'] ?>
+				<?php echo $manager->getFormatDate($recherche[$attribut]['pro_date']) ?>
 			</td>
 			<td>
 				<?php echo $recherche[$attribut]['pro_time'] ?>

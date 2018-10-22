@@ -80,13 +80,6 @@ class ProposeManager{
 		}
 	}
 
-	public function prenomNomLogin($login){
-		$req = $this->db->prepare('SELECT per_prenom,per_nom FROM personne WHERE per_login="'.$login.'";');
-		$req->execute();
-		$res = $req->fetch(PDO::FETCH_OBJ);
-		return $res->per_prenom." ".$res->per_nom;
-	}
-
 	public function getPrenomNomFromNum($per_num){
 		$req = $this->db->prepare('SELECT per_prenom,per_nom FROM personne WHERE per_num="'.$per_num.'";');
 		$req->execute();
@@ -99,5 +92,10 @@ class ProposeManager{
 		$req->execute();
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		return $res->par_num;
+	}
+
+	public function getFormatDate($pro_date){
+		$tab = explode("-",$pro_date);
+		return $tab[2]."/".$tab[1]."/".$tab[0];
 	}
 }
