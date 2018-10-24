@@ -28,8 +28,8 @@
 					<option value= <?php echo $value->getVilNum() ?> > <?php echo $value->getVilNom() ?> </option>
 				<?php } ?>
 				</select></b></p>
-			<p><b>Date de départ : </b><input id="champ" type="date" name="pro_date" required> 
-			   <b>Heure de départ : </b><input id="champ" type="time" name="pro_time" required></p>
+			<p><b>Date de départ : </b><input id="champ" type="date" name="pro_date" value=<?php echo date("Y-m-d") ?> required> 
+			   <b>Heure de départ : </b><input id="champ" type="time" name="pro_time" value=<?php echo date("H:i") ?> required></p>
 			<p><b>Nombre de places : </b><input type="number" id="champ" name="pro_place" size="4" min="1" max="50" required></p>
 			<p><input id="valider" type=submit value="Valider"></p>
 		</form>	
