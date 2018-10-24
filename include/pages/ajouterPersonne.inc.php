@@ -1,7 +1,7 @@
 
-	<h1>Ajouter une personne</h1>
-
 	<?php if(empty($_POST['per_login'])) { ?>
+		<h1>Ajouter une personne</h1>
+
 		<form action="index.php?page=1" id="personne" method="post">
 	<p class=pg>
 		Nom : <input type="text" id="champ" name="per_nom" size="10" required><br>
@@ -21,7 +21,37 @@
 
 </form>
 		<?php } else { 
-		$db = new Mypdo();
+			if($_POST['p_categ']==="etu"){ ?>
+				<h1>Ajouter un étudiant</h1>
+				<form action="index.php?page=1" id="etudiant" method="post">
+
+				Année : <select> </select>
+				<br>
+				Département : <select> </select>
+				<br>
+	
+				<input type=submit value="Valider">
+
+			<?php }
+			if($_POST['p_categ']==="pers"){ ?>
+
+				<h1>Ajouter un salarié</h1>
+				<form action="index.php?page=1" id="salarie" method="post">
+
+				Télephone professionnel :<input type="tel" pattern='\d{2}\d{2}\d{2}\d{2}\d{2}' title="06XXXXXXXX" id="champ" name="per_tel" size="10" required>
+				<br>
+				Fonction : <select> </select>
+			
+				<br>
+	
+				<input type=submit value="Valider">
+			<?php }
+			} ?>
+
+
+
+
+		<?php /*$db = new Mypdo();
 		$manager = new PersonneManager($db);
 		$personne = new Personne ($_POST);
 		if($manager->exists($personne)===true){ ?>
@@ -31,5 +61,5 @@
 			<p><img src="image/valid.png" alt="Validé" title="Validé" /> 
 		    <?php echo $_POST['per_prenom']?> <?php echo $_POST['per_nom']?> a été ajouté(e)</p>
 		
-	<?php }
-	} ?>
+	<?php }*/ ?>
+	
