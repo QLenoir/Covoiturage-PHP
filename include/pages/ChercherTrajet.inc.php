@@ -31,6 +31,7 @@
 			</select></b></p>
 			<p><b>Date de départ : </b><input id="champ" type="date" name="pro_date" required> 
 			<b>Précision : </b><select id="champ" size="1" name="precision" required>
+				<option value=0>Ce jour</option>
 				<?php  for ($i = 1; $i <= 3 ; $i++) { ?>
 					<option value= <?php echo $i ?> > 
 						<?php if($i === 1) {echo "+/- ".$i." jour";
@@ -80,7 +81,7 @@
 				<?php echo $recherche[$attribut]['pro_place'] ?>
 			</td>
 			<td>
-				<?php echo $manager->getPrenomNomFromNum($recherche[$attribut]['per_num']) ?>
+				<a id="avis" href="#" title="bite"><?php echo $manager->getPrenomNomFromNum($recherche[$attribut]['per_num']) ?></a>
 			</td>	
 			</tr><?php echo "\n";
 		} ?>
