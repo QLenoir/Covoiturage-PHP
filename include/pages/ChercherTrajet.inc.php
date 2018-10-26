@@ -81,7 +81,10 @@
 				<?php echo $recherche[$attribut]['pro_place'] ?>
 			</td>
 			<td>
-				<a id="avis" href="#" title="bite"><?php echo $manager->getPrenomNomFromNum($recherche[$attribut]['per_num']) ?></a>
+				<div class="tooltip">
+					<a><?php echo $manager->getPrenomNomFromNum($recherche[$attribut]['per_num']) ?></a>
+					<span class="tooltiptext">Moyenne des avis : <?php echo $manager->getMoyenneAvis($recherche[$attribut]['per_num']) ?>/10 Dernier avis : <?php echo "écoute du métal c'est trop bien" ?></span>
+				</div>
 			</td>	
 			</tr><?php echo "\n";
 		} ?>

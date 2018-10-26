@@ -98,4 +98,12 @@ class ProposeManager{
 		$tab = explode("-",$pro_date);
 		return $tab[2]."/".$tab[1]."/".$tab[0];
 	}
+
+	public function getMoyenneAvis($per_num){
+		$req = $this->db->prepare('SELECT AVG(avi_note) AS moy FROM avis WHERE per_num="'.$per_num.'";');
+		$req->execute();
+		$res = $req->fetch(PDO::FETCH_OBJ);
+
+		return $res->moy;
+	}
 }
