@@ -80,8 +80,4 @@ class Propose{
 	public function getProSens() {
 		return $this->pro_sens;
 	}
-
-	public function PerNumLogin($login){
-
-	}
 }
