@@ -106,4 +106,12 @@ class ProposeManager{
 
 		return $res->moy;
 	}
+
+	public function getDernierAvis($per_num) {
+		$req = $this->db->prepare('SELECT avi_comm AS com FROM avis WHERE per_num='.$per_num.' ORDER BY avi_date DESC LIMIT 1');
+		$req->execute();
+		$res = $req->fetch(PDO::FETCH_OBJ);
+
+		return $res->com;
+	}
 }
