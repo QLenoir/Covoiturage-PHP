@@ -8,30 +8,30 @@ $manager = new ParcoursManager($db);
 if(empty($_POST['vil_num1']) && empty($_POST['vil_num2'])) { ?>
 	<form action="index.php?page=9" id="vil_nom" method="post">
 		<p><label>Ville de départ : </label></p>
-		<p><select id="champ" size="1" name="vil_num1" >
+		<p><select class="champ" size="1" name="vil_num1" >
 			<option value="0" > Choisissez </option>
 			<?php $listeParcours = $manager->getAllVilleParcours(); 
 			foreach ($listeParcours as $attribut => $value) { ?>
 				<option value= <?php echo $value->getVilNum() ?> > <?php echo $value->getVilNom() ?> </option>
 			<?php } ?>
 		</select></p>
-		<p><input id="valider" type=submit value="Valider"></p>
+		<p><input class="valider" type=submit value="Valider"></p>
 	</form>
 <?php } elseif (empty($_POST['vil_num2'])) { 
 	$_SESSION['vil_num1']=$_POST['vil_num1']; ?>
 	<form action="index.php?page=9" id="trajet" method="post">
 		<p><b> Ville de départ : <?php echo $manager->recupNomVille($_POST['vil_num1']) ?></b>
 			<b> Ville d'arrivée : 
-				<select id="champ" size="1" name="vil_num2" required>
+				<select class="champ" size="1" name="vil_num2" required>
 					<?php $listeParcours2 = $manager->getVilleParcours($_POST['vil_num1']); 
 					foreach ($listeParcours2 as $attribut => $value) { ?>
 						<option value= <?php echo $value->getVilNum() ?> > <?php echo $value->getVilNom() ?> </option>
 					<?php } ?>
 				</select></b></p>
-				<p><b>Date de départ : </b><input id="champ" type="date" name="pro_date" value=<?php echo date("Y-m-d") ?> required> 
-					<b>Heure de départ : </b><input id="champ" type="time" name="pro_time" value=<?php echo date("H:i") ?> required></p>
-					<p><b>Nombre de places : </b><input type="number" id="champ" name="pro_place" size="4" min="1" max="50" required></p>
-					<p><input id="valider" type=submit value="Valider"></p>
+				<p><b>Date de départ : </b><input class="champ" type="date" name="pro_date" value=<?php echo date("Y-m-d") ?> required> 
+					<b>Heure de départ : </b><input class="champ" type="time" name="pro_time" value=<?php echo date("H:i") ?> required></p>
+					<p><b>Nombre de places : </b><input type="number" class="champ" name="pro_place" size="4" min="1" max="50" required></p>
+					<p><input class="valider" type=submit value="Valider"></p>
 				</form>	
 			<?php } else { 
 				$proposeManager = new ProposeManager($db);

@@ -2,8 +2,8 @@
 
 <?php if(empty($_POST['vil_nom'])) { ?>
 	<form action="index.php?page=7" id="NO_COMMANDE" method="post">
-		<label>Nom : </label><input type="text" id="champ" name="vil_nom" size="4">
-		<input id="valider" type=submit value="Valider">
+		<label>Nom : </label><input type="text" class="champ" name="vil_nom" size="4">
+		<input class="valider" type=submit value="Valider">
 	</form>
 <?php } else { 
 	$db = new Mypdo();

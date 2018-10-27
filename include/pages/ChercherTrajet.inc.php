@@ -8,7 +8,7 @@ $manager = new ProposeManager($db);
 <?php if(empty($_POST['vil_num1']) && empty($_POST['pro_date'])) {?>
 	<form action="index.php?page=10" id="vil_nom" method="post">
 		<p><label>Ville de départ : </label></p>
-		<p><select id="champ" size="1" name="vil_num1" >
+		<p><select class="champ" size="1" name="vil_num1" >
 			<option value="0" > Choisissez </option>
 			<?php $listeTrajets = $manager->getVilleDepart(); 
 			foreach ($listeTrajets as $attribut => $value) { ?>
@@ -23,14 +23,14 @@ $manager = new ProposeManager($db);
 	<form action="index.php?page=10" id="vil_nom" method="post">
 		<p><b> Ville de départ : <?php echo $manager->recupNomVille($_POST['vil_num1']) ?></b>
 			<b> Ville d'arrivée : 
-				<select id="champ" size="1" name="vil_num2" required>
+				<select class="champ" size="1" name="vil_num2" required>
 					<?php $listeTrajets2 = $manager->getVilleArrivee($_POST['vil_num1']); 
 					foreach ($listeTrajets2 as $attribut => $value) { ?>
 						<option value= <?php echo $value->getVilNum() ?> > <?php echo $manager->recupNomVille($value->getVilNum()) ?> </option>
 					<?php } ?>
 				</select></b></p>
-				<p><b>Date de départ : </b><input id="champ" type="date" name="pro_date" required> 
-					<b>Précision : </b><select id="champ" size="1" name="precision" required>
+				<p><b>Date de départ : </b><input class="champ" type="date" name="pro_date" required> 
+					<b>Précision : </b><select class="champ" size="1" name="precision" required>
 						<option value=0>Ce jour</option>
 						<?php  for ($i = 1; $i <= 3 ; $i++) { ?>
 							<option value= <?php echo $i ?> > 
@@ -42,7 +42,7 @@ $manager = new ProposeManager($db);
 					<?php } ?>
 				</select></p>
 				<p><b>A partir de : </b>
-					<select id="champ" size="1" name="heure" required>
+					<select class="champ" size="1" name="heure" required>
 						<?php  for ($i = 0; $i <= 23 ; $i++) { ?>
 							<option value= <?php echo $i ?> > <?php echo $i."h" ?> </option>
 						<?php } ?>
