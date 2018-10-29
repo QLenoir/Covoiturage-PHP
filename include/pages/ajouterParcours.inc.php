@@ -20,7 +20,7 @@ if(empty($_POST['par_km'])) { ?>
 					<option value= <?php echo $value->getVilNum() ?> > <?php echo $value->getVilNom() ?> </option>
 				<?php } ?>
 			</select>
-			<label>Nombre de kilomètres : </label><input type="number" class="champ" name="par_km" size="4" min="1" max="1000">	
+			<label>Nombre de kilomètres : </label><input type="number" class="champ" name="par_km" size="4" min="1" max="1000" required>	
 		</p>
 		<input type=submit class="valider" value="Valider">
 	</form>
