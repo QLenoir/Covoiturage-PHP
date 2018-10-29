@@ -100,7 +100,7 @@ class ProposeManager{
 	}
 
 	public function getMoyenneAvis($per_num){
-		$req = $this->db->prepare('SELECT AVG(avi_note) AS moy FROM avis WHERE per_num="'.$per_num.'";');
+		$req = $this->db->prepare('SELECT ROUND(AVG(avi_note),1) AS moy FROM avis WHERE per_num="'.$per_num.'";');
 		$req->execute();
 		$res = $req->fetch(PDO::FETCH_OBJ);
 

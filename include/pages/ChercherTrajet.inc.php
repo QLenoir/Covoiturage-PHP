@@ -83,7 +83,7 @@ $manager = new ProposeManager($db);
 							<td>
 								<div class="tooltip">
 									<a><?php echo $manager->getPrenomNomFromNum($recherche[$attribut]['per_num']) ?></a>
-									<span class="tooltiptext">Moyenne des avis : <?php echo $manager->getMoyenneAvis($recherche[$attribut]['per_num']) ?>/10 Dernier avis : <?php echo $manager->getDernierAvis($recherche[$attribut]['per_num']) ?></span>
+									<span class="tooltiptext">Moyenne des avis : <?php echo $manager->getMoyenneAvis($recherche[$attribut]['per_num']) ?>/10 <br> Dernier avis : <?php echo $manager->getDernierAvis($recherche[$attribut]['per_num']) ?></span>
 								</div>
 							</td>	
 							</tr><?php echo "\n";
