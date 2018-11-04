@@ -8,9 +8,7 @@
 <?php } else { 
 	$db = new Mypdo();
 	$manager = new VilleManager($db);
-	$ville = new Ville (
-		array('vil_nom' => $_POST['vil_nom'])
-	);
+	$ville = new Ville ($_POST);
 	if($manager->exists($ville->getVilNom())===true){
 		?><p><img src="image/erreur.png" alt="Erreur" title="Erreur" /> Ajout impossible : ville déja présente</p> <?php
 	} else {

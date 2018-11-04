@@ -32,7 +32,7 @@ $manager = new ProposeManager($db);
 				<p><b>Date de départ : </b><input class="champ" type="date" name="pro_date" required> 
 					<b>Précision : </b><select class="champ" size="1" name="precision" required>
 						<option value=0>Ce jour</option>
-						<?php  for ($i = 1; $i <= 3 ; $i++) { ?>
+						<?php  for ($i = 1; $i <= PRECISION ; $i++) { ?>
 							<option value= <?php echo $i ?> > 
 								<?php if($i === 1) {echo "+/- ".$i." jour";
 							} else {

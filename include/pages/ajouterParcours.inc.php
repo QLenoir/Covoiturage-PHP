@@ -26,11 +26,7 @@ if(empty($_POST['par_km'])) { ?>
 	</form>
 <?php } else { 
 	$manager = new ParcoursManager($db);
-	$parcours = new Parcours (
-		array('vil_num1' => $_POST['vil_num1'],
-			'vil_num2' => $_POST['vil_num2'],
-			'par_km' => $_POST['par_km'])
-	);
+	$parcours = new Parcours ($_POST);
 	if ($_POST['vil_num1']===$_POST['vil_num2']) { ?>
 		<p> <img src="image/erreur.png" alt="Erreur" title="Erreur" /> Les villes sélectionnées sont identiques</p>
 	<?php } else if($manager->exists($parcours)) { ?>
