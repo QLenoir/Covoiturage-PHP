@@ -21,7 +21,7 @@ class VilleManager{
 
 	public function addVille($ville) {
 		
-		$req = $this->db->prepare('INSERT INTO VILLE(vil_nom) VALUES (:vil_nom)');
+		$req = $this->db->prepare('INSERT INTO ville(vil_nom) VALUES (:vil_nom)');
 		$req->bindValue(':vil_nom',$ville->getVilNom(),PDO::PARAM_STR);
 		$req->execute();
 	}
@@ -43,7 +43,7 @@ class VilleManager{
 	}
 
 	public function getNbVille(){
-		$req = $this->db->prepare('SELECT * FROM VILLE');
+		$req = $this->db->prepare('SELECT * FROM ville');
 		$req->execute();
 		return $req->rowCount();
 	}

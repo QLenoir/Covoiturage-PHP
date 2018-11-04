@@ -21,7 +21,7 @@ class ParcoursManager{
 
 	public function addParcours($parcours) {
 		
-		$req = $this->db->prepare('INSERT INTO Parcours(vil_num1,vil_num2,par_km) VALUES (:vil_num1, :vil_num2, :par_km);');
+		$req = $this->db->prepare('INSERT INTO parcours(vil_num1,vil_num2,par_km) VALUES (:vil_num1, :vil_num2, :par_km);');
 		$req->bindValue(':vil_num1',$parcours->getVilNum1(),PDO::PARAM_STR);
 		$req->bindValue(':vil_num2',$parcours->getVilNum2(),PDO::PARAM_STR);
 		$req->bindValue(':par_km',$parcours->getParKm(),PDO::PARAM_STR);
@@ -45,7 +45,7 @@ class ParcoursManager{
 	}
 
 	public function getNbParcours(){
-		$req = $this->db->prepare('SELECT * FROM PARCOURS');
+		$req = $this->db->prepare('SELECT * FROM parcours');
 		$req->execute();
 		return $req->rowCount();
 	}
