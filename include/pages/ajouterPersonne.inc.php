@@ -5,14 +5,14 @@
 	<form action="index.php?page=1" id="personne" method="post">
 		<div class="pers">
 			<div  class=pg>
-				<b>Nom : </b><input type="text" class="champ" name="per_nom" size="10" required><br>
-				<b>Téléphone : </b><input type="tel" pattern='\d{2}\d{2}\d{2}\d{2}\d{2}' title="06XXXXXXXX" class="champ" name="per_tel" size="10" required><br>
-				<b>Login : </b><input type="text" class="champ" name="per_login" size="10" required><br>
+				<p><b>Nom : </b><input type="text" class="champ" name="per_nom" size="10" required><br></p>
+				<p><b>Téléphone : </b><input type="tel" pattern='\d{2}\d{2}\d{2}\d{2}\d{2}' title="06XXXXXXXX" class="champ" name="per_tel" size="10" required><br></p>
+				<p><b>Login : </b><input type="text" class="champ" name="per_login" size="10" required><br></p>
 			</div>
 			<div class=pdr>
-				<b>Prénom : </b><input type="text" class="champ" name="per_prenom" size="10" required><br>
-				<b>Mail : </b><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="champ" name="per_mail" size="10" required><br>
-				<b>Mot de passe : </b><input type="password" class="champ" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Doit contenir au moins 1 chiffre, 1 lettre majuscule et 1 lettre minuscule et doit au moins faire 8 caractères" name="per_pwd" size="10" required><br>
+				<p><b>Prénom : </b><input type="text" class="champ" name="per_prenom" size="10" required><br></p>
+				<p><b>Mail : </b><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="champ" name="per_mail" size="10" required><br></p>
+				<p><b>Mot de passe : </b><input type="password" class="champ" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Doit contenir au moins 1 chiffre, 1 lettre majuscule et 1 lettre minuscule et doit au moins faire 8 caractères" name="per_pwd" size="10" required><br></p>
 			</div>
 		</div>
 		<div class="cat">

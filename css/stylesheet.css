@@ -184,7 +184,6 @@ td {
 }
 
 .champ{
-	width:15%;
 	background-color: lightgray;
 	border-radius:5px;
 	border:1px solid #111111;
@@ -317,7 +316,7 @@ table#recherche{
 	text-align: center;
 	float:left;
 	flex:2;
-	width : 150px;
+	width : 50%;
   	margin: 0;
   	box-sizing: border-box;
 }
@@ -326,6 +325,7 @@ table#recherche{
 	text-align: center;
 	float: right;
 	flex:2;
+	width: 50%;
 }
 
 .cat{
