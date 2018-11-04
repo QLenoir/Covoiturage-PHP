@@ -24,6 +24,8 @@ class ProposeManager{
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		$pers = new Personne($res);
 		return $pers->getPNum();
+
+		$req->closeCursor();
 	}
 
 	public function getVilleDepart() {
@@ -45,6 +47,8 @@ class ProposeManager{
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		$ville = new Ville($res);
 		return $ville->getVilNom();
+
+		$req->closeCursor();
 	}
 
 	public function getVilleArrivee($vil_num1) {
@@ -78,6 +82,8 @@ class ProposeManager{
 		} else {
 			return $listeTrajet;
 		}
+
+		$req->closeCursor();
 	}
 
 	public function getPrenomNomFromNum($per_num){
@@ -85,6 +91,8 @@ class ProposeManager{
 		$req->execute();
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		return $res->per_prenom." ".$res->per_nom;
+
+		$req->closeCursor();
 	}
 
 	public function recupParNum($vil_num1,$vil_num2){
@@ -92,6 +100,8 @@ class ProposeManager{
 		$req->execute();
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		return $res->par_num;
+
+		$req->closeCursor();
 	}
 
 	public function getFormatDate($pro_date){
@@ -105,6 +115,8 @@ class ProposeManager{
 		$res = $req->fetch(PDO::FETCH_OBJ);
 
 		return $res->moy;
+
+		$req->closeCursor();
 	}
 
 	public function getDernierAvis($per_num) {
@@ -113,5 +125,7 @@ class ProposeManager{
 		$res = $req->fetch(PDO::FETCH_OBJ);
 
 		return $res->com;
+
+		$req->closeCursor();
 	}
 }

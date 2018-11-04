@@ -43,6 +43,8 @@ class PersonneManager{
 			}
 		}
 		return false;
+
+		$req->closeCursor();
 	}
 
 	public function getNbPersonne(){

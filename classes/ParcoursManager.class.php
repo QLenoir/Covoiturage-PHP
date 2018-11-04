@@ -40,6 +40,8 @@ class ParcoursManager{
 			}
 		}
 		return false;
+
+		$req->closeCursor();
 	}
 
 	public function getNbParcours(){
@@ -61,6 +63,8 @@ class ParcoursManager{
 		}
 
 		return $listeVilleParcours;
+
+		$req->closeCursor();
 	}
 
 	public function recupNomVille($numVille) {
@@ -69,6 +73,8 @@ class ParcoursManager{
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		$ville = new Ville($res);
 		return $ville->getVilNom();
+
+		$req->closeCursor();
 	}
 
 	public function getVilleParcours($vil_num1) {
@@ -83,6 +89,8 @@ class ParcoursManager{
 			$value->setVilNom($this->recupNomVille($value->getVilNum()));
 		}
 		return $listeVilleParcours;
+
+		$req->closeCursor();
 	}
 
 	public function findParNum($vil_num1,$vil_num2) {
@@ -91,6 +99,8 @@ class ParcoursManager{
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		$parcours = new Parcours($res);
 		return $parcours->getParNum();
+
+		$req->closeCursor();
 	}
 
 	public function findProSens($par_num,$vil_num1){
@@ -103,5 +113,7 @@ class ParcoursManager{
 		} else {
 			return 1;
 		}
+
+		$req->closeCursor();
 	}
 }

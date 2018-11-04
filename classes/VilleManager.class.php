@@ -38,6 +38,8 @@ class VilleManager{
 			}
 		}
 		return false;
+
+		$req->closeCursor();
 	}
 
 	public function getNbVille(){
@@ -52,5 +54,7 @@ class VilleManager{
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		$ville = new Ville($res);
 		return $ville->getVilNom();
+
+		$req->closeCursor();
 	}
 }

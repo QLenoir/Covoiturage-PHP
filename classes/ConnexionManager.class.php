@@ -20,5 +20,7 @@ class ConnexionManager{
 			}
 		}
 		return 0;
+
+		$req->closeCursor();
 	}
 }
