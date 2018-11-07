@@ -12,14 +12,15 @@ $villes = $manager->getAllVille();?>
 		</tr>
 		<?php 
 		foreach ($villes as $attribut => $value) {  ?>
-			<td>
-				<?php echo $value->getVilNum() ?>
-			</td>
-			<td>
-				<?php echo $value->getVilNom() ?>
-			</td>	
-			</tr><?php echo "\n";
-		} ?>
-	</table>
-</div>
+			<tr>
+				<td>
+					<?php echo $value->getVilNum() ?>
+				</td>
+				<td>
+					<?php echo $value->getVilNom() ?>
+				</td>	
+				</tr><?php echo "\n";
+			} ?>
+		</table>
+	</div>
 

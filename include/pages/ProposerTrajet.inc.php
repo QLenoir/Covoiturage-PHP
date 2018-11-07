@@ -8,8 +8,8 @@ $manager = new ParcoursManager($db);
 if(empty($_POST['vil_num1']) && empty($_POST['vil_num2'])) { ?>
 	<form action="index.php?page=9" id="vil_nom" method="post">
 		<p><label>Ville de départ : </label></p>
-		<p><select class="champ" size="1" name="vil_num1" >
-			<option value="0" > Choisissez </option>
+		<p><select class="champ" size="1" name="vil_num1" required>
+			<option value="" > Choisissez </option>
 			<?php $listeParcours = $manager->getAllVilleParcours(); 
 			foreach ($listeParcours as $attribut => $value) { ?>
 				<option value= <?php echo $value->getVilNum() ?> > <?php echo $value->getVilNom() ?> </option>
@@ -27,14 +27,15 @@ if(empty($_POST['vil_num1']) && empty($_POST['vil_num2'])) { ?>
 				<p><b>Nombre de places : </b><input type="number" class="champ" name="pro_place" size="4" min="1" max="50" required></p>
 			</div>
 			<div class="pdr">
-				<b> Ville d'arrivée : 
+				<p><b> Ville d'arrivée : 
 					<select class="champ" size="1" name="vil_num2" required>
+						<option value=""> Choisissez </option>
 						<?php $listeParcours2 = $manager->getVilleParcours($_POST['vil_num1']); 
 						foreach ($listeParcours2 as $attribut => $value) { ?>
 							<option value= <?php echo $value->getVilNum() ?> > <?php echo $value->getVilNom() ?> </option>
 						<?php } ?>
 					</select></b></p>
-					<b>Heure de départ : </b><input class="champ" type="time" name="pro_time" value=<?php echo date("H:i") ?> required></p>
+					<p><b>Heure de départ : </b><input class="champ" type="time" name="pro_time" value=<?php echo date("H:i") ?> required></p>
 				</div>
 			</div>
 			<p><input class="valider" type=submit value="Valider"></p>

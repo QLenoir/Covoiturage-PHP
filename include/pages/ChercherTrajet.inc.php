@@ -8,8 +8,8 @@ $manager = new ProposeManager($db);
 <?php if(empty($_POST['vil_num1']) && empty($_POST['pro_date'])) {?>
 	<form action="index.php?page=10" id="vil_nom" method="post">
 		<p><label>Ville de départ : </label></p>
-		<p><select class="champ" size="1" name="vil_num1" >
-			<option value="0" > Choisissez </option>
+		<p><select class="champ" size="1" name="vil_num1" required>
+			<option value="" > Choisissez </option>
 			<?php $listeTrajets = $manager->getVilleDepart(); 
 			foreach ($listeTrajets as $attribut => $value) { ?>
 				<option value= <?php echo $value->getVilNum() ?> > <?php echo $manager->recupNomVille($value->getVilNum()) ?> </option>
@@ -26,21 +26,22 @@ $manager = new ProposeManager($db);
 				<p><b> Ville de départ : <?php echo $manager->recupNomVille($_POST['vil_num1']) ?></b></p>
 				<p><b>Date de départ : </b><input class="champ" type="date" name="pro_date" required> </p>
 				<p><b>A partir de : </b>
-					<select class="champ" size="1" name="heure" required>
+					<select class="champ" size="1" name="heure" >
 						<?php  for ($i = 0; $i <= 23 ; $i++) { ?>
 							<option value= <?php echo $i ?> > <?php echo $i."h" ?> </option>
 						<?php } ?>
 					</select></p>
 				</div>
 				<div class="pdr">
-					<b> Ville d'arrivée : 
+					<p><b> Ville d'arrivée : 
 						<select class="champ" size="1" name="vil_num2" required>
+							<option value=""> Choisissez </option>
 							<?php $listeTrajets2 = $manager->getVilleArrivee($_POST['vil_num1']); 
 							foreach ($listeTrajets2 as $attribut => $value) { ?>
 								<option value= <?php echo $value->getVilNum() ?> > <?php echo $manager->recupNomVille($value->getVilNum()) ?> </option>
 							<?php } ?>
 						</select></b></p>
-						<p><b>Précision : </b><select class="champ" size="1" name="precision" required>
+						<p><b>Précision : </b><select class="champ" size="1" name="precision" >
 							<option value=0>Ce jour</option>
 							<?php  for ($i = 1; $i <= PRECISION ; $i++) { ?>
 								<option value= <?php echo $i ?> > 
@@ -72,29 +73,30 @@ $manager = new ProposeManager($db);
 			</tr>
 			<?php 
 			foreach ($recherche as $attribut => $value) { ?>
-				<td>
-					<?php echo $manager->recupNomVille($recherche[$attribut]['vil_num1']) ?>
-				</td>
-				<td>
-					<?php echo $manager->recupNomVille($recherche[$attribut]['vil_num2']) ?>
-				</td>
-				<td>
-					<?php echo $manager->getFormatDate($recherche[$attribut]['pro_date']) ?>
-				</td>
-				<td>
-					<?php echo $recherche[$attribut]['pro_time'] ?>
-				</td>		
-				<td>
-					<?php echo $recherche[$attribut]['pro_place'] ?>
-				</td>
-				<td>
-					<div class="tooltip">
-						<a><?php echo $manager->getPrenomNomFromNum($recherche[$attribut]['per_num']) ?></a>
-						<span class="tooltiptext">Moyenne des avis : <?php echo $manager->getMoyenneAvis($recherche[$attribut]['per_num']) ?>/10 <br> Dernier avis : <?php echo $manager->getDernierAvis($recherche[$attribut]['per_num']) ?></span>
-					</div>
-				</td>	
-				</tr><?php echo "\n";
-			} ?>
-		</table>
-	<?php } ?>
-	<?php } ?>
+				<tr>
+					<td>
+						<?php echo $manager->recupNomVille($recherche[$attribut]['vil_num1']) ?>
+					</td>
+					<td>
+						<?php echo $manager->recupNomVille($recherche[$attribut]['vil_num2']) ?>
+					</td>
+					<td>
+						<?php echo $manager->getFormatDate($recherche[$attribut]['pro_date']) ?>
+					</td>
+					<td>
+						<?php echo $recherche[$attribut]['pro_time'] ?>
+					</td>		
+					<td>
+						<?php echo $recherche[$attribut]['pro_place'] ?>
+					</td>
+					<td>
+						<div class="tooltip">
+							<a><?php echo $manager->getPrenomNomFromNum($recherche[$attribut]['per_num']) ?></a>
+							<span class="tooltiptext">Moyenne des avis : <?php echo $manager->getMoyenneAvis($recherche[$attribut]['per_num']) ?>/10 <br> Dernier avis : <?php echo $manager->getDernierAvis($recherche[$attribut]['per_num']) ?></span>
+						</div>
+					</td>	
+					</tr><?php echo "\n";
+				} ?>
+			</table>
+		<?php } ?>
+		<?php } ?>
