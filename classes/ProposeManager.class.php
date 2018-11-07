@@ -65,18 +65,31 @@ class ProposeManager{
 	}
 
 	public function findTrajet($vil_num1,$vil_num2,$pro_date,$heure,$precision) {
+		
 		$par_num = $this->recupParNum($vil_num1,$vil_num2);
-		$req = $this->db->prepare('SELECT vil_num1,vil_num2,pro_date,pro_time,pro_place,per_num FROM propose po JOIN parcours pa ON pa.par_num=po.par_num WHERE po.par_num='.$par_num.' AND pa.vil_num1="'.$vil_num1.'" AND pro_date>=SUBDATE("'.$pro_date.'", INTERVAL '.$precision.' DAY) AND pro_date<=ADDDATE("'.$pro_date.'", INTERVAL '.$precision.' DAY) AND HOUR(pro_time)>='.$heure.' ORDER BY pro_date,pro_time;');
+
+		$req = $this->db->prepare('SELECT vil_num1 AS villeSens FROM parcours WHERE par_num='.$par_num);
 		$req->execute();
+
+		$res = $req->fetch(PDO::FETCH_OBJ);
+
+		if($res->villeSens == $vil_num1) {
+			$pro_sens=0;
+		} else {
+			$pro_sens=1;
+		}
+
+		$req = $this->db->prepare('SELECT pro_date,pro_time,pro_place,per_num FROM propose po JOIN parcours pa ON pa.par_num=po.par_num WHERE po.par_num='.$par_num.' AND pro_date>=SUBDATE("'.$pro_date.'", INTERVAL '.$precision.' DAY) AND pro_date<=ADDDATE("'.$pro_date.'", INTERVAL '.$precision.' DAY) AND HOUR(pro_time)>='.$heure.' AND pro_sens='.$pro_sens.' ORDER BY pro_date,pro_time;');
+		$req->execute();
+
 		while ($res = $req->fetch(PDO::FETCH_ASSOC)) {
 			$listeTrajet[] = $res ;
 		}
 
 		if(empty($listeTrajet)){
 			return 0;
-		} else {
-			return $listeTrajet;
-		}
+		} 
+		return $listeTrajet;
 
 		$req->closeCursor();
 	}
