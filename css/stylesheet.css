@@ -325,7 +325,9 @@ table#recherche{
 	text-align: center;
 	float: right;
 	flex:2;
-	width: 50%;
+	width : 150px;
+  	margin: 0;
+  	box-sizing: border-box;
 }
 
 .cat{
