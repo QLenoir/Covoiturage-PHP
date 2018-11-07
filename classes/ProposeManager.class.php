@@ -68,13 +68,8 @@ class ProposeManager{
 		$par_num = $this->recupParNum($vil_num1,$vil_num2);
 		$req = $this->db->prepare('SELECT vil_num1,vil_num2,pro_date,pro_time,pro_place,per_num FROM propose po JOIN parcours pa ON pa.par_num=po.par_num WHERE po.par_num='.$par_num.' AND pa.vil_num1="'.$vil_num1.'" AND pro_date>=SUBDATE("'.$pro_date.'", INTERVAL '.$precision.' DAY) AND pro_date<=ADDDATE("'.$pro_date.'", INTERVAL '.$precision.' DAY) AND HOUR(pro_time)>='.$heure.' ORDER BY pro_date,pro_time;');
 		$req->execute();
-		while ($res = $req->fetch(PDO::FETCH_OBJ)) {
-			$listeTrajet[] = Array('vil_num1' => $res->vil_num1,
-								   'vil_num2' => $res->vil_num2,
-								   'pro_date' => $res->pro_date,
-								   'pro_time' => $res->pro_time,
-								   'pro_place' => $res->pro_place,
-								   'per_num' => $res->per_num);
+		while ($res = $req->fetch(PDO::FETCH_ASSOC)) {
+			$listeTrajet[] = $res ;
 		}
 
 		if(empty($listeTrajet)){
