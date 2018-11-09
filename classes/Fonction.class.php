@@ -13,25 +13,25 @@ class Fonction{
 		foreach ($donnees as $attribut =>$valeur){
 
 			switch ($attribut){
-				case 'fon_num' : $this->setFNum($valeur);
+				case 'fon_num' : $this->setFonNum($valeur);
 					break;
-				case 'fon_libelle' : $this->setFLib($valeur);
+				case 'fon_libelle' : $this->setFonLib($valeur);
 					break;
 				
 			}
 		}
 	}
-	public function setFNum($num) {
+	public function setFonNum($num) {
 		$this->fon_num = $num;
 	}
-	public function setFLib($lib){
+	public function setFonLib($lib){
 		$this->fon_libelle = $lib;
 	} 
 
-	public function getFNum(){
+	public function getFonNum(){
 		return $this->fon_num;
 	}
-	public function getFLib(){
+	public function getFonLib(){
 		return $this->fon_libelle;
 	}
 }
