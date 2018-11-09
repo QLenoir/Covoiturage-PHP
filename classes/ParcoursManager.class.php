@@ -68,7 +68,8 @@ class ParcoursManager{
 	}
 
 	public function recupNomVille($numVille) {
-		$req = $this->db->prepare('SELECT vil_nom FROM ville WHERE vil_num="'.$numVille.'";');
+		$req = $this->db->prepare('SELECT vil_nom FROM ville WHERE vil_num=:numVille;');
+		$req->bindValue(':numVille',$numVille,PDO::PARAM_STR);
 		$req->execute();
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		$ville = new Ville($res);
@@ -78,7 +79,8 @@ class ParcoursManager{
 	}
 
 	public function getVilleParcours($vil_num1) {
-		$req = $this->db->prepare('SELECT vil_num2 AS vil_num FROM parcours WHERE vil_num1="'.$vil_num1.'" UNION SELECT vil_num1 AS vil_num FROM parcours WHERE vil_num2="'.$vil_num1.'";');
+		$req = $this->db->prepare('SELECT vil_num2 AS vil_num FROM parcours WHERE vil_num1=:vil_num1 UNION SELECT vil_num1 AS vil_num FROM parcours WHERE vil_num2=:vil_num1;');
+		$req->bindValue(':vil_num1',$vil_num1(),PDO::PARAM_STR);
 		$req->execute();
 
 		while ($villes = $req->fetch(PDO::FETCH_OBJ)) {
@@ -94,8 +96,10 @@ class ParcoursManager{
 	}
 
 	public function findParNum($vil_num1,$vil_num2) {
-		$req = $this->db->prepare('SELECT par_num FROM parcours WHERE (vil_num1='.$vil_num1.' AND vil_num2='.$vil_num2.') OR (vil_num1='.$vil_num2.' AND vil_num2='.$vil_num1.');');
+		$req = $this->db->prepare('SELECT par_num FROM parcours WHERE (vil_num1=:vil_num1 AND vil_num2=:vil_num2) OR (vil_num1=:vil_num2 AND vil_num2=:vil_num1);');
 		$req->execute();
+		$req->bindValue(':vil_num1',$vil_num1,PDO::PARAM_STR);
+		$req->bindValue(':vil_num2',$vil_num2,PDO::PARAM_STR);
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		$parcours = new Parcours($res);
 		return $parcours->getParNum();
@@ -104,7 +108,8 @@ class ParcoursManager{
 	}
 
 	public function findProSens($par_num,$vil_num1){
-		$req = $this->db->prepare('SELECT vil_num1,vil_num2 FROM parcours WHERE par_num='.$par_num.';');
+		$req = $this->db->prepare('SELECT vil_num1,vil_num2 FROM parcours WHERE par_num=:par_num;');
+		$req->bindValue(':par_num',$par_num,PDO::PARAM_STR);
 		$req->execute();
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		$par = new Parcours($res);

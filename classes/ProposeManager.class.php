@@ -19,7 +19,8 @@ class ProposeManager{
 	}
 
 	public function perNumLogin($login){
-		$req = $this->db->prepare('SELECT per_num FROM personne WHERE per_login="'.$login.'";');
+		$req = $this->db->prepare('SELECT per_num FROM personne WHERE per_login=:per_login;');
+		$req->bindValue(':per_login',$login,PDO::PARAM_STR);
 		$req->execute();
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		$pers = new Personne($res);
@@ -42,7 +43,8 @@ class ProposeManager{
 	}
 
 	public function recupNomVille($numVille) {
-		$req = $this->db->prepare('SELECT vil_nom FROM ville WHERE vil_num="'.$numVille.'";');
+		$req = $this->db->prepare('SELECT vil_nom FROM ville WHERE vil_num=:numVille;');
+		$req->bindValue(':numVille', $numVille,PDO::PARAM_STR);
 		$req->execute();
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		$ville = new Ville($res);
@@ -52,7 +54,8 @@ class ProposeManager{
 	}
 
 	public function getVilleArrivee($vil_num1) {
-		$req = $this->db->prepare('SELECT vil_num2 AS vil_num FROM parcours WHERE vil_num1="'.$vil_num1.'" UNION SELECT vil_num1 AS vil_num FROM parcours WHERE vil_num2="'.$vil_num1.'";');
+		$req = $this->db->prepare('SELECT vil_num2 AS vil_num FROM parcours WHERE vil_num1=:vil_num1 UNION SELECT vil_num1 AS vil_num FROM parcours WHERE vil_num2=:vil_num1;');
+		$req->bindValue(':vil_num1', $vil_num1,PDO::PARAM_STR);
 		$req->execute();
 
 		while ($ville = $req->fetch(PDO::FETCH_OBJ)) {
@@ -68,7 +71,8 @@ class ProposeManager{
 		
 		$par_num = $this->recupParNum($vil_num1,$vil_num2);
 
-		$req = $this->db->prepare('SELECT vil_num1 AS villeSens FROM parcours WHERE par_num='.$par_num);
+		$req = $this->db->prepare('SELECT vil_num1 AS villeSens FROM parcours WHERE par_num=:par_num');
+		$req->bindValue(':par_num',$par_num,PDO::PARAM_STR);
 		$req->execute();
 
 		$res = $req->fetch(PDO::FETCH_OBJ);
@@ -79,7 +83,14 @@ class ProposeManager{
 			$pro_sens=1;
 		}
 
-		$req = $this->db->prepare('SELECT pro_date,pro_time,pro_place,per_num FROM propose po JOIN parcours pa ON pa.par_num=po.par_num WHERE po.par_num='.$par_num.' AND pro_date>=SUBDATE("'.$pro_date.'", INTERVAL '.$precision.' DAY) AND pro_date<=ADDDATE("'.$pro_date.'", INTERVAL '.$precision.' DAY) AND HOUR(pro_time)>='.$heure.' AND pro_sens='.$pro_sens.' ORDER BY pro_date,pro_time;');
+		$req = $this->db->prepare('SELECT T.pro_date,T.pro_time,T.pro_place,p.per_prenom,p.per_nom,T.per_num FROM 
+										(SELECT pro_date,pro_time,pro_place,per_num FROM propose po JOIN parcours pa ON pa.par_num=po.par_num WHERE po.par_num=:par_num AND pro_date>=SUBDATE(:pro_date, INTERVAL :precision DAY) AND pro_date<=ADDDATE(:pro_date, INTERVAL :precision DAY) AND HOUR(pro_time)>=:heure AND pro_sens=:pro_sens ORDER BY pro_date,pro_time)T
+									INNER JOIN personne p ON p.per_num=T.per_num');
+		$req->bindValue(':par_num',$par_num,PDO::PARAM_STR);
+		$req->bindValue(':pro_date',$pro_date,PDO::PARAM_STR);
+		$req->bindValue(':precision', $precision,PDO::PARAM_STR);
+		$req->bindValue(':heure', $heure,PDO::PARAM_STR);
+		$req->bindValue(':pro_sens', $pro_sens,PDO::PARAM_STR);
 		$req->execute();
 
 		while ($res = $req->fetch(PDO::FETCH_ASSOC)) {
@@ -95,7 +106,8 @@ class ProposeManager{
 	}
 
 	public function getPrenomNomFromNum($per_num){
-		$req = $this->db->prepare('SELECT per_prenom,per_nom FROM personne WHERE per_num="'.$per_num.'";');
+		$req = $this->db->prepare('SELECT per_prenom,per_nom FROM personne WHERE per_num=:per_num');
+		$req->bindValue(':per_num', $per_num,PDO::PARAM_STR);
 		$req->execute();
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		return $res->per_prenom." ".$res->per_nom;
@@ -104,7 +116,9 @@ class ProposeManager{
 	}
 
 	public function recupParNum($vil_num1,$vil_num2){
-		$req = $this->db->prepare('SELECT par_num FROM parcours WHERE vil_num1="'.$vil_num1.'" AND vil_num2="'.$vil_num2.'" UNION SELECT par_num FROM parcours WHERE vil_num1="'.$vil_num2.'" AND vil_num2="'.$vil_num1.'";');
+		$req = $this->db->prepare('SELECT par_num FROM parcours WHERE vil_num1=:vil_num1 AND vil_num2=:vil_num2 UNION SELECT par_num FROM parcours WHERE vil_num1=:vil_num2 AND vil_num2=:vil_num1;');
+		$req->bindValue(':vil_num1', $vil_num1,PDO::PARAM_STR);
+		$req->bindValue(':vil_num2', $vil_num2,PDO::PARAM_STR);
 		$req->execute();
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		return $res->par_num;
@@ -118,7 +132,8 @@ class ProposeManager{
 	}
 
 	public function getMoyenneAvis($per_num){
-		$req = $this->db->prepare('SELECT ROUND(AVG(avi_note),1) AS moy FROM avis WHERE per_num="'.$per_num.'";');
+		$req = $this->db->prepare('SELECT ROUND(AVG(avi_note),1) AS moy FROM avis WHERE per_num=:per_num;');
+		$req->bindValue(':per_num', $per_num,PDO::PARAM_STR);
 		$req->execute();
 		$res = $req->fetch(PDO::FETCH_OBJ);
 
@@ -128,7 +143,8 @@ class ProposeManager{
 	}
 
 	public function getDernierAvis($per_num) {
-		$req = $this->db->prepare('SELECT avi_comm AS com FROM avis WHERE per_num='.$per_num.' ORDER BY avi_date DESC LIMIT 1');
+		$req = $this->db->prepare('SELECT avi_comm AS com FROM avis WHERE per_num=:per_num ORDER BY avi_date DESC LIMIT 1');
+		$req->bindValue(':per_num', $per_num,PDO::PARAM_STR);
 		$req->execute();
 		$res = $req->fetch(PDO::FETCH_OBJ);
 

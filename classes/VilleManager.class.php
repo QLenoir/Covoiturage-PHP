@@ -49,7 +49,8 @@ class VilleManager{
 	}
 
 	public function recupNomVille($numVille) {
-		$req = $this->db->prepare('SELECT vil_nom FROM ville WHERE vil_num="'.$numVille.'";');
+		$req = $this->db->prepare('SELECT vil_nom FROM ville WHERE vil_num=:numVille;');
+		$req->bindValue(':numVille', $numVille,PDO::PARAM_STR);
 		$req->execute();
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		$ville = new Ville($res);
