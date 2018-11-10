@@ -15,19 +15,20 @@ $ListeParcours = $manager->getAllParcours();?>
 		</tr>
 		<?php 
 		foreach ($ListeParcours as $attribut => $value) {  ?>
-			<td>
-				<?php echo $value->getParNum() ?>
-			</td>
-			<td>
-				<?php echo $managerVille->recupNomVille($value->getVilNum1()) ?>
-			</td>
-			<td>
-				<?php echo $managerVille->recupNomVille($value->getVilNum2()) ?>
-			</td>
-			<td>
-				<?php echo $value->getParKm() ?>
-			</td>	
-			</tr><?php echo "\n";
-		} ?>
-	</table>
-</div>
+			<tr>
+				<td>
+					<?php echo $value->getParNum() ?>
+				</td>
+				<td>
+					<?php echo $managerVille->recupNomVille($value->getVilNum1()) ?>
+				</td>
+				<td>
+					<?php echo $managerVille->recupNomVille($value->getVilNum2()) ?>
+				</td>
+				<td>
+					<?php echo $value->getParKm() ?>
+				</td>	
+				</tr><?php echo "\n";
+			} ?>
+		</table>
+	</div>
