@@ -6,8 +6,8 @@ class PersonneManager{
 		$this->db = $db;
 	}
 
-	public function getAllPersonne() {
-		$req = $this->db->prepare('SELECT * FROM personne ORDER BY p_nom;');
+	public function getAllPersonnes() {
+		$req = $this->db->prepare('SELECT * FROM personne ORDER BY per_nom;');
 		$req->execute();
 
 		while ($personne = $req->fetch(PDO::FETCH_OBJ)) {
@@ -33,18 +33,24 @@ class PersonneManager{
 
 	public function exists($personne) {
 
-		$req = $this->db->prepare('SELECT per_mail, per_login FROM personne');
+		$req = $this->db->prepare('SELECT per_mail, per_login FROM personne WHERE per_login=:login AND per_mail=:mail');
+		$req->bindValue(':login', $personne->getPLogin());
+		$req->bindValue(':mail', $personne->getPMail());
 		$req->execute();
 		
-		while ($res = $req->fetch(PDO::FETCH_OBJ)) {	
+		/*while ($res = $req->fetch(PDO::FETCH_OBJ)) {	
 			$personnetable = new Personne($res);
 			if($personne->getPMail() === $personnetable->getPMail() || $personne->getPLogin() === $personnetable->getPLogin()){
 				return true;
 			}
-		}
-		return false;
+		}*/
 
+		$resultat = $req->fetch(PDO::FETCH_OBJ);
 		$req->closeCursor();
+
+		return $resultat != null;
+
+		//$req->closeCursor();
 	}
 
 	public function getNbPersonne(){
