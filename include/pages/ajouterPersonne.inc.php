@@ -11,7 +11,7 @@ if (!isset($_SESSION['personne'])){
 			<div class="pers">
 				<div  class=pg>
 					<p><b>Nom : </b><input type="text" class="champ" name="per_nom" size="10" required></p><br>
-					<p><b>Téléphone : </b><input type="tel" pattern='\d{2}\d{2}\d{2}\d{2}\d{2}' title="06XXXXXXXX" class="champ" name="per_tel" size="10" required></p><br>
+					<p><b>Téléphone : </b><input type="tel" pattern='\d{2}\d{2}\d{2}\d{2}\d{2}' title="0XXXXXXXXX" class="champ" name="per_tel" size="10" required></p><br>
 					<p><b>Login : </b><input type="text" class="champ" name="per_login" size="10" required></p><br>
 				</div>
 				<div class=pdr>
@@ -77,7 +77,7 @@ if (!isset($_SESSION['personne'])){
 			<h1>Ajouter un salarié</h1>
 			<form action="index.php?page=1" id="salarie" method="post">
 
-				<p>Télephone professionnel : <input type="tel" pattern='\d{2}\d{2}\d{2}\d{2}\d{2}' title="06XXXXXXXX" class="champ" name="sal_telprof" size="10" required></p>
+				<p>Télephone professionnel : <input type="tel" pattern='\d{2}\d{2}\d{2}\d{2}\d{2}' title="0XXXXXXXXX" class="champ" name="sal_telprof" size="10" required></p>
 				<br>
 				<p>Fonction : 
 					<select class="champ" size="1" name="fon_num" required> 
