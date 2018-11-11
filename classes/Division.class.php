@@ -14,23 +14,23 @@ class Division{
 		foreach ($donnees as $attribut =>$valeur){
 
 			switch ($attribut){
-				case 'div_num' : $this->setDNum($valeur);
+				case 'div_num' : $this->setDivNum($valeur);
 					break;
-				case 'div_nom' : $this->setDNom($valeur);
+				case 'div_nom' : $this->setDivNom($valeur);
 					break;
 			}
 		}
 	}
-	public function setDNum($num) {
-		$this->dep_num = $num;
+	public function setDivNum($num) {
+		$this->div_num = $num;
 	}
-	public function setDNom($nom) {
-		$this->dep_nom = $nom;
+	public function setDivNom($nom) {
+		$this->div_nom = $nom;
 	}
-	public function getDNum() {
+	public function getDivNum() {
 		return $this->div_num ;
 	}
-	public function getDNom() {
+	public function getDivNom() {
 		return $this->div_nom;
 	}
 }

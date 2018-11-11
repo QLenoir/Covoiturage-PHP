@@ -36,18 +36,24 @@ class PersonneManager{
 	//Retourne true si le mail ou le login est déja utilisé et false sinon
 	public function exists($personne) {
 
-		$req = $this->db->prepare('SELECT per_mail, per_login FROM personne');
+		$req = $this->db->prepare('SELECT per_mail, per_login FROM personne WHERE per_login=:login AND per_mail=:mail');
+		$req->bindValue(':login', $personne->getPLogin());
+		$req->bindValue(':mail', $personne->getPMail());
 		$req->execute();
 		
-		while ($res = $req->fetch(PDO::FETCH_OBJ)) {	
+		/*while ($res = $req->fetch(PDO::FETCH_OBJ)) {	
 			$personnetable = new Personne($res);
 			if($personne->getPMail() === $personnetable->getPMail() || $personne->getPLogin() === $personnetable->getPLogin()){
 				return true;
 			}
-		}
-		return false;
+		}*/
 
+		$resultat = $req->fetch(PDO::FETCH_OBJ);
 		$req->closeCursor();
+
+		return $resultat != null;
+
+		//$req->closeCursor();
 	}
 
 	//retourne le nombre total de personne dans la base de données

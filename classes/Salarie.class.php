@@ -40,7 +40,7 @@ class Salarie{
 	public function getSalTel() {
 		return $this->sal_tel;
 	}
-	public function getDivNum() {
+	public function getFonNum() {
 		return $this->fon_num;
 	}
 }
