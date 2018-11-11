@@ -1,15 +1,20 @@
 <h1> Liste des villes </h1>
+
 <?php
 $db = new Mypdo();
 $manager = new VilleManager($db);
 $villes = $manager->getAllVille();?>
+
 <div id="listeville">
+	
 	<p>Il y a actuellement <?php echo $manager->getNbVille()?> villes</p>
+	
 	<table>
 		<tr>
 			<th> Numéro </th>
 			<th> Nom </th>
 		</tr>
+		
 		<?php 
 		foreach ($villes as $attribut => $value) {  ?>
 			<tr>
@@ -21,6 +26,7 @@ $villes = $manager->getAllVille();?>
 				</td>	
 				</tr><?php echo "\n";
 			} ?>
+			
 		</table>
 	</div>
 

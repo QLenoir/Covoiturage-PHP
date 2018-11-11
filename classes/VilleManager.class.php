@@ -6,8 +6,9 @@ class VilleManager{
 		$this->db = $db;
 	}
 
+	//Retourne la liste de toutes les villes de la base de données
 	public function getAllVille() {
-		$req = $this->db->prepare('SELECT vil_num,vil_nom FROM ville ORDER BY vil_nom;');
+		$req = $this->db->prepare('SELECT * FROM ville ORDER BY vil_nom;');
 		$req->execute();
 
 		while ($ville = $req->fetch(PDO::FETCH_OBJ)) {
@@ -19,6 +20,7 @@ class VilleManager{
 		$req->closeCursor();
 	}
 
+	//Ajoute une ville dans la base de données
 	public function addVille($ville) {
 		
 		$req = $this->db->prepare('INSERT INTO ville(vil_nom) VALUES (:vil_nom)');
@@ -26,6 +28,7 @@ class VilleManager{
 		$req->execute();
 	}
 
+	//Retourne true si la ville existe, et false sinon
 	public function exists($ville) {
 
 		$req = $this->db->prepare('SELECT vil_nom FROM ville');
@@ -42,12 +45,14 @@ class VilleManager{
 		$req->closeCursor();
 	}
 
+	//Retourne le nombre de villes totales de la base de données
 	public function getNbVille(){
 		$req = $this->db->prepare('SELECT * FROM ville');
 		$req->execute();
 		return $req->rowCount();
 	}
 
+	//Retourne le nom d'une ville selon le numéro donné en entrée
 	public function recupNomVille($numVille) {
 		$req = $this->db->prepare('SELECT vil_nom FROM ville WHERE vil_num=:numVille;');
 		$req->bindValue(':numVille', $numVille,PDO::PARAM_STR);

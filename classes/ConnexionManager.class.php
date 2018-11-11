@@ -6,6 +6,7 @@ class ConnexionManager{
 		$this->db = $db;
 	}
 
+	//Renvoie un code retour selon la réussite de la connexion : 1 si le login/mdp correspond ainsi que le captcha, 0 si le login/mdr ne correspond pas et -1 si le login/mdp est bon mais pas le patcha
 	public function login($connexion){
 		$connexion->setPerPwd(sha1(sha1($connexion->getPerPwd()).SALT));
 		$req = $this->db->prepare('SELECT per_login,per_pwd FROM personne WHERE per_login=:per_login;');

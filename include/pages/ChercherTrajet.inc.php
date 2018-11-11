@@ -3,6 +3,8 @@
 }
 $db = new Mypdo();
 $manager = new ProposeManager($db);
+$avisManager = new AvisManager($db);
+$villeManager = new VilleManager($db);
 ?>
 
 <h1>Rechercher un trajet</h1>
@@ -16,7 +18,7 @@ $manager = new ProposeManager($db);
 			
 			<?php $listeTrajets = $manager->getVilleDepart(); 
 			foreach ($listeTrajets as $attribut => $value) { ?>
-				<option value= <?php echo $value->getVilNum() ?> > <?php echo $manager->recupNomVille($value->getVilNum()) ?> </option>
+				<option value= <?php echo $value->getVilNum() ?> > <?php echo $villeManager->recupNomVille($value->getVilNum()) ?> </option>
 			<?php } ?>
 
 		</select></p>
@@ -31,7 +33,7 @@ $manager = new ProposeManager($db);
 		<div class="pers">
 			<div class="pg">
 				
-				<p><b> Ville de départ : <?php echo $manager->recupNomVille($_POST['vil_num1']) ?></b></p>
+				<p><b> Ville de départ : <?php echo $villeManager->recupNomVille($_POST['vil_num1']) ?></b></p>
 				
 				<p><b>Date de départ : </b><input class="champ" type="date" name="pro_date" required> </p>
 				
@@ -50,7 +52,7 @@ $manager = new ProposeManager($db);
 						
 						<?php $listeTrajets2 = $manager->getVilleArrivee($_POST['vil_num1']); 
 						foreach ($listeTrajets2 as $attribut => $value) { ?>
-							<option value= <?php echo $value->getVilNum() ?> > <?php echo $manager->recupNomVille($value->getVilNum()) ?> </option>
+							<option value= <?php echo $value->getVilNum() ?> > <?php echo $villeManager->recupNomVille($value->getVilNum()) ?> </option>
 
 						<?php } ?>
 					</select>
@@ -97,10 +99,10 @@ $manager = new ProposeManager($db);
 			foreach ($recherche as $attribut => $value) { ?>
 				<tr>
 					<td>
-						<?php echo $manager->recupNomVille($_SESSION['vil_num1']) ?>
+						<?php echo $villeManager->recupNomVille($_SESSION['vil_num1']) ?>
 					</td>
 					<td>
-						<?php echo $manager->recupNomVille($_POST['vil_num2']) ?>
+						<?php echo $villeManager->recupNomVille($_POST['vil_num2']) ?>
 					</td>
 					<td>
 						<?php echo $manager->getFormatDate($recherche[$attribut]['pro_date']) ?>
@@ -115,7 +117,7 @@ $manager = new ProposeManager($db);
 						<div class="tooltip">
 							<a><?php echo $recherche[$attribut]['per_prenom']." ".$recherche[$attribut]['per_nom'] ?></a>
 							
-							<span class="tooltiptext">Moyenne des avis : <?php echo $manager->getMoyenneAvis($recherche[$attribut]['per_num']) ?>/10 <br> Dernier avis : <?php echo $manager->getDernierAvis($recherche[$attribut]['per_num']) ?></span>
+							<span class="tooltiptext">Moyenne des avis : <?php echo $avisManager->getMoyenneAvis($recherche[$attribut]['per_num']) ?>/5.0 <br> Dernier avis : <?php echo $avisManager->getDernierAvis($recherche[$attribut]['per_num']) ?></span>
 
 						</div>
 					</td>	

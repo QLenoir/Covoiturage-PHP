@@ -6,6 +6,7 @@ class PersonneManager{
 		$this->db = $db;
 	}
 
+	//Retourne le liste de toutes les personnes de la base de données
 	public function getAllPersonne() {
 		$req = $this->db->prepare('SELECT * FROM personne ORDER BY p_nom;');
 		$req->execute();
@@ -19,6 +20,7 @@ class PersonneManager{
 		$req->closeCursor();
 	}
 
+	//Ajoute une personne dans la base de données
 	public function addPersonne($personne) {
 		
 		$req = $this->db->prepare('INSERT INTO personne(per_nom,per_prenom,per_tel,per_mail, per_login, per_pwd) VALUES (:p_nom, :p_prenom, :p_tel, :p_mail, :p_login, :p_mdp)');
@@ -31,6 +33,7 @@ class PersonneManager{
 		$req->execute();
 	}
 
+	//Retourne true si le mail ou le login est déja utilisé et false sinon
 	public function exists($personne) {
 
 		$req = $this->db->prepare('SELECT per_mail, per_login FROM personne');
@@ -47,11 +50,23 @@ class PersonneManager{
 		$req->closeCursor();
 	}
 
+	//retourne le nombre total de personne dans la base de données
 	public function getNbPersonne(){
 		$req = $this->db->prepare('SELECT * FROM personne');
 		$req->execute();
 		return $req->rowCount();
 	}
 
+	//Retourne le numéro d'une personne en fonction de son login
+	public function perNumLogin($login){
+		$req = $this->db->prepare('SELECT per_num FROM personne WHERE per_login=:per_login;');
+		$req->bindValue(':per_login',$login,PDO::PARAM_STR);
+		$req->execute();
+		$res = $req->fetch(PDO::FETCH_OBJ);
+		$pers = new Personne($res);
+		return $pers->getPNum();
+
+		$req->closeCursor();
+	}
 
 }

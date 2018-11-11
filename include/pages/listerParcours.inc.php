@@ -1,11 +1,15 @@
 <h1>Liste des parcours</h1>
+
 <?php
 $db = new Mypdo();
 $manager = new ParcoursManager($db);
 $managerVille = new VilleManager($db);
 $ListeParcours = $manager->getAllParcours();?>
+
 <div>
+	
 	<p>Il y a actuellement <?php echo $manager->getNbParcours()?> parcours</p>
+	
 	<table id="listeparcours">
 		<tr>
 			<th> Numéro </th>
@@ -13,6 +17,7 @@ $ListeParcours = $manager->getAllParcours();?>
 			<th> Nom Ville </th>
 			<th> Nombre de Km </th>
 		</tr>
+		
 		<?php 
 		foreach ($ListeParcours as $attribut => $value) {  ?>
 			<tr>
@@ -30,5 +35,6 @@ $ListeParcours = $manager->getAllParcours();?>
 				</td>	
 				</tr><?php echo "\n";
 			} ?>
+			
 		</table>
 	</div>
