@@ -2,7 +2,7 @@
 
 <?php 
 $db = new Mypdo();
-$villeManager = new villeManager($db);
+$villeManager = new VilleManager($db);
 if(empty($_POST['par_km'])) { ?>
 
 	<form action="index.php?page=5" id="NO_COMMANDE" method="post">

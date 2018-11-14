@@ -17,8 +17,8 @@ if(empty($_POST['per_pwd'])) { ?>
 		?>
 
 		<div id="captcha">
-			<img id="nb" src=<?php echo "image/nb/".$_SESSION['src1'] ?> alt=Captcha title="Captcha"  /> <b id ="operation">+</b> 
-			<img id="nb" src=<?php echo "image/nb/".$_SESSION['src2'] ?> alt=Captcha title="Captcha"  />  <b id="operation">=</b>
+			<img id="nb" src=<?php echo "image/nb/".$_SESSION['src1'].".jpg" ?> alt=Captcha title="Captcha"  /> <b id ="operation">+</b> 
+			<img id="nb" src=<?php echo "image/nb/".$_SESSION['src2'].".jpg" ?> alt=Captcha title="Captcha"  />  <b id="operation">=</b>
 		</div>
 			
 			<input type="text" class="champ" name="reponse" size="4" required>
@@ -60,8 +60,8 @@ if(empty($_POST['per_pwd'])) { ?>
 				?>
 
 				<div id="captcha">
-					<img id="nb" src=<?php echo "image/nb/".$_SESSION['src1'] ?> alt=Captcha title="Captcha"  /> <b id ="operation">+</b> 
-					<img id="nb" src=<?php echo "image/nb/".$_SESSION['src2'] ?> alt=Captcha title="Captcha"  />  <b id="operation">=</b>
+					<img id="nb" src=<?php echo "image/nb/".$_SESSION['src1'].".jpg" ?> alt=Captcha title="Captcha"  /> <b id ="operation">+</b> 
+					<img id="nb" src=<?php echo "image/nb/".$_SESSION['src2'].".jpg" ?> alt=Captcha title="Captcha"  />  <b id="operation">=</b>
 				</div>
 
 					<input type="text" class="champ" name="reponse" size="4" required>
