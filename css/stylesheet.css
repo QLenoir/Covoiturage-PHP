@@ -161,11 +161,9 @@ table{
 	border-collapse: collapse;;
 }
 
-
-
 td {
 	border: 1px solid black;
-	padding: 10px 100px 10px 100px;
+	padding: 10px 50px 10px 50px;
 	margin: 0%;
 }
 
@@ -309,7 +307,6 @@ table#recherche{
 .pers{
     display: flex;
     align-items: baseline;
-
 }
 
 .pg{
@@ -332,4 +329,7 @@ table#recherche{
 
 .cat{
 	flex:3;
+}
+.noDeco{
+	border: none;
 }

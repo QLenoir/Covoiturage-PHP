@@ -28,4 +28,16 @@ class EtudiantManager{
 		
 		$req->execute();
 	}
+
+	public function exists($etudiant) {
+
+		$req = $this->db->prepare('SELECT per_num  FROM etudiant WHERE per_num=:num ');
+		$req->bindValue(':num', $etudiant->getEtuNum());
+		$req->execute();
+
+		$resultat = $req->fetch(PDO::FETCH_OBJ);
+		$req->closeCursor();
+
+		return $resultat != null;
+	}
 }
