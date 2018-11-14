@@ -66,8 +66,9 @@ if(empty($_POST['vil_num1']) && empty($_POST['vil_num2'])) {
 	
 	<?php } else { 
 		$proposeManager = new ProposeManager($db);
+		$personneManager = new PersonneManager($db);
 		$trajet = new Propose(array('par_num' => $manager->findParNum($_SESSION['vil_num1'],$_POST['vil_num2']),
-			'per_num' => $villeManager->perNumLogin($_SESSION['login']),
+			'per_num' => $personneManager->perNumLogin($_SESSION['login']),
 			'pro_date' => $_POST['pro_date'],
 			'pro_time' => $_POST['pro_time'],
 			'pro_place' => $_POST['pro_place']));

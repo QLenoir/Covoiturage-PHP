@@ -117,7 +117,7 @@ $villeManager = new VilleManager($db);
 						<div class="tooltip">
 							<a><?php echo $recherche[$attribut]['per_prenom']." ".$recherche[$attribut]['per_nom'] ?></a>
 							
-							<span class="tooltiptext">Moyenne des avis : <?php echo $avisManager->getMoyenneAvis($recherche[$attribut]['per_num']) ?>/5.0 <br> Dernier avis : <?php echo $avisManager->getDernierAvis($recherche[$attribut]['per_num']) ?></span>
+							<span class="tooltiptext">Moyenne des avis : <?php echo $avisManager->getMoyenneAvis($recherche[$attribut]['per_num']) ?> <br> Dernier avis : <?php echo $avisManager->getDernierAvis($recherche[$attribut]['per_num']) ?></span>
 
 						</div>
 					</td>	

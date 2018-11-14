@@ -12,8 +12,10 @@ class AvisManager{
 		$req->bindValue(':per_num', $per_num,PDO::PARAM_STR);
 		$req->execute();
 		$res = $req->fetch(PDO::FETCH_OBJ);
-
-		return $res->moy;
+		if(is_null($res->moy)){
+			return "Non Noté";
+		}
+		return $res->moy." /5.0";
 
 		$req->closeCursor();
 	}
@@ -24,7 +26,10 @@ class AvisManager{
 		$req->bindValue(':per_num', $per_num,PDO::PARAM_STR);
 		$req->execute();
 		$res = $req->fetch(PDO::FETCH_OBJ);
-
+		
+		if($res===false){
+			return "Aucun commentaire";
+		}
 		return $res->com;
 
 		$req->closeCursor();
