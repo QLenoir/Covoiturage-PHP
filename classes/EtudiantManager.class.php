@@ -40,4 +40,19 @@ class EtudiantManager{
 
 		return $resultat != null;
 	}
+
+	public function getEtudiant($pers,$num_p){
+
+		$req = $this->db->prepare('SELECT  dep_num, div_num FROM etudiant WHERE per_num=:num ');
+		$req->bindValue(':num', $num_p);
+		$req->execute();
+
+		$etu = $req->fetch(PDO::FETCH_OBJ);
+		$req->closeCursor();
+		$netu= new Etudiant($pers,$req);
+
+
+		return $netu;
+
+	}
 }
